@@ -42,8 +42,7 @@ public class Gui {
         JMenuItem runSimulator = new JMenuItem("RunSimulator");
         runSimulator.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Simulator sim = new Simulator();
-                sim.run();
+                runsim();
             }
         });
         fileMenu.add(runSimulator);
@@ -60,4 +59,17 @@ public class Gui {
     {
         System.exit(0);
     }
-}
+
+    public void runsim()
+    {
+        try {
+            Simulator sim = new Simulator();
+            sim.run();
+        }
+
+        catch(Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+    }
+

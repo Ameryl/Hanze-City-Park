@@ -1,7 +1,6 @@
 public class Main{
     public static void main(String[]args)
-        {
-            Gui guiInteerface = new Gui();
-        }
+    {
+        Gui guiInteerface = new Gui();
     }
-
+}
