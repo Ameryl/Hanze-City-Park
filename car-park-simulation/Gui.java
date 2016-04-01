@@ -55,7 +55,7 @@ public class Gui {
         });
         fileMenu.add(quitItem);
     }
-
+    //kutniek
     private void quit()
     {
         System.exit(0);
