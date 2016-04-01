@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=numberOfFloors\ numberOfRows\ numberOfPlaces
+comment0.target=SimulatorView(int,\ int,\ int)
+comment1.params=
+comment1.target=void\ updateView()
+comment10.params=
+comment10.target=void\ tick()
+comment11.params=location
+comment11.target=boolean\ locationIsValid(Location)
+comment2.params=
+comment2.target=int\ getNumberOfFloors()
+comment3.params=
+comment3.target=int\ getNumberOfRows()
+comment4.params=
+comment4.target=int\ getNumberOfPlaces()
+comment5.params=location
+comment5.target=Car\ getCarAt(Location)
+comment6.params=location\ car
+comment6.target=boolean\ setCarAt(Location,\ Car)
+comment7.params=location
+comment7.target=Car\ removeCarAt(Location)
+comment8.params=
+comment8.target=Location\ getFirstFreeLocation()
+comment9.params=
+comment9.target=Car\ getFirstLeavingCar()
+numComments=12

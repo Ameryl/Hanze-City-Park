@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=floor\ row\ place
+comment0.target=Location(int,\ int,\ int)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Location\n
+comment1.params=obj
+comment1.target=boolean\ equals(java.lang.Object)
+comment1.text=\n\ Implement\ content\ equality.\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=\n\ Return\ a\ string\ of\ the\ form\ floor,row,place.\n\ @return\ A\ string\ representation\ of\ the\ location.\n
+comment3.params=
+comment3.target=int\ hashCode()
+comment3.text=\n\ Use\ the\ 10\ bits\ for\ each\ of\ the\ floor,\ row\ and\ place\n\ values.\ Except\ for\ very\ big\ car\ parks,\ this\ should\ give\n\ a\ unique\ hash\ code\ for\ each\ (floor,\ row,\ place)\ tupel.\n\ @return\ A\ hashcode\ for\ the\ location.\n
+comment4.params=
+comment4.target=int\ getFloor()
+comment4.text=\n\ @return\ The\ floor.\n
+comment5.params=
+comment5.target=int\ getRow()
+comment5.text=\n\ @return\ The\ row.\n
+comment6.params=
+comment6.target=int\ getPlace()
+comment6.text=\n\ @return\ The\ place.\n
+numComments=7

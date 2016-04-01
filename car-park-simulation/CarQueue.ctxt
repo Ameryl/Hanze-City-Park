@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=car
+comment0.target=boolean\ addCar(Car)
+comment1.params=
+comment1.target=Car\ removeCar()
+numComments=2
