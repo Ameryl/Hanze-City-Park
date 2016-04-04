@@ -42,6 +42,7 @@ public class Gui {
         JMenuItem runSimulator = new JMenuItem("RunSimulator");
         runSimulator.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 runsim();
             }
         });

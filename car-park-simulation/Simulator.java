@@ -19,6 +19,7 @@ public class Simulator {
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
+    int parkPassChance = 3; // chance x/10 of a car having a parkpass instead of a normal customer
 
     public Simulator() {
         entranceCarQueue = new CarQueue();
@@ -62,8 +63,16 @@ public class Simulator {
 
         // Add the cars to the back of the queue.
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            Car car = new AdHocCar();
-            entranceCarQueue.addCar(car);
+            if(random.nextInt(10) < parkPassChance) {
+                Car car = new ParkPassCar();
+                entranceCarQueue.addCar(car);
+            }
+            else {
+                Car car = new AdHocCar();
+                entranceCarQueue.addCar(car);
+            }
+
+
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -90,8 +99,15 @@ public class Simulator {
             if (car == null) {
                 break;
             }
-            car.setIsPaying(true);
-            paymentCarQueue.addCar(car);
+
+            if(car instanceof AdHocCar) {
+                car.setIsPaying(true);
+                paymentCarQueue.addCar(car);
+            }
+
+            else if(car instanceof ParkPassCar) {
+                exitCarQueue.addCar(car);
+            }
         }
 
         // Let cars pay.
@@ -101,6 +117,8 @@ public class Simulator {
                 break;
             }
             // TODO Handle payment.
+
+
             simulatorView.removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
         }
