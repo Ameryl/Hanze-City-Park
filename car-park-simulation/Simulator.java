@@ -19,7 +19,7 @@ public class Simulator {
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
-    int parkPassChance = 3; // chance x/10 of a car having a parkpass instead of a normal customer
+    int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
 
     public Simulator() {
         entranceCarQueue = new CarQueue();
@@ -106,6 +106,7 @@ public class Simulator {
             }
 
             else if(car instanceof ParkPassCar) {
+                car.setIsPaying(true);
                 exitCarQueue.addCar(car);
             }
         }
