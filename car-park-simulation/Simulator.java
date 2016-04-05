@@ -2,11 +2,19 @@ import java.util.Random;
 
 public class Simulator {
 
+    // Object for entering cars
     private CarQueue entranceCarQueue;
+
+    // Object for paying cars
     private CarQueue paymentCarQueue;
+
+    //Object for exiting cars
     private CarQueue exitCarQueue;
+
+    // Instance or the graphical display of the simulation
     private SimulatorView simulatorView;
 
+    // Time intervals
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
@@ -21,6 +29,9 @@ public class Simulator {
     int exitSpeed = 9; // number of cars that can leave per minute
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
 
+    /**
+     * Constructor for the simulation
+     */
     public Simulator() {
         entranceCarQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
@@ -29,13 +40,19 @@ public class Simulator {
     }
 
 
-
+    /**
+     * Running the simulation for a duration
+     * @param steps amount of steps
+     */
     public void run(int steps) {
         for (int i = 0; i < steps; i++) {
             tick();
         }
     }
 
+    /**
+     * Executing the simulation per minutes
+     */
     private void tick() {
         // Advance the time by one minute.
         minute++;
