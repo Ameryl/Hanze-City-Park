@@ -1,12 +1,15 @@
 import javax.swing.*;
+import java.awt.event.*;
 import java.awt.*;
 
-public class SimulatorView extends JFrame {
+public class SimulatorView extends JFrame   {
     private CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private Car[][][] cars;
+    private JFrame frame;
+
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
@@ -15,15 +18,37 @@ public class SimulatorView extends JFrame {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
         carParkView = new CarParkView();
+        makeFrame();
+       // menuBar = new JMenuBar();
 
-        Container contentPane = getContentPane();
+    }
+
+    public void makeFrame(){
+        frame = new JFrame("carSim");
+
+        Container contentPane = frame.getContentPane();
         //contentPane.add(stepLabel, BorderLayout.NORTH);
         contentPane.add(carParkView, BorderLayout.CENTER);
+        contentPane.add(carParkView);
+
+
         //contentPane.add(population, BorderLayout.SOUTH);
-        pack();
-        setVisible(true);
+
+
+        frame.pack();
+        frame.setVisible(true);
+
+
 
         updateView();
+
+
+
+    }
+
+
+    public void openFile() {
+        System.out.println("hallo");
     }
 
     public void updateView() {

@@ -22,7 +22,7 @@ public class Gui {
 
         Container contentPane = frame.getContentPane();
 
-        JLabel label = new JLabel("I am a very nice label. I can display some text.");
+        JLabel label = new JLabel("I am a label. I can display some text.");
         contentPane.add(label);
 
         // building is done - arrange the components and show
@@ -43,7 +43,11 @@ public class Gui {
         runSimulator.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                runsim();
+                Simulator sim = new Simulator();
+                sim.run();
+
+
+
             }
         });
         fileMenu.add(runSimulator);
@@ -61,6 +65,7 @@ public class Gui {
         System.exit(0);
     }
 
+
     public void runsim()
     {
         try {
@@ -73,4 +78,5 @@ public class Gui {
         }
     }
     }
+//
 
