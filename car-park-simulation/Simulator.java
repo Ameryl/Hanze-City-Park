@@ -28,11 +28,7 @@ public class Simulator {
         simulatorView = new SimulatorView(3, 6, 30,this);
     }
 
-    public void run() {
-        for (int i = 0; i < 10000; i++) {
-            tick();
-        }
-    }
+
 
     public void run(int steps) {
         for (int i = 0; i < steps; i++) {

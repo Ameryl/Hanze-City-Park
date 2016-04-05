@@ -44,7 +44,7 @@ public class start extends JDialog {
                 try {
 
                     Simulator sim = new Simulator();
-                    sim.run();
+                    sim.run(10000);
                 }
 
                 catch(Exception ex) {

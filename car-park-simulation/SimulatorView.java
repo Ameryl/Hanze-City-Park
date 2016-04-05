@@ -68,7 +68,7 @@ public class SimulatorView extends JFrame   {
             public void actionPerformed(ActionEvent e) {
                 Thread thread = new Thread() {
                     public void run() {
-                        sim.run();
+                        sim.run(10000);
                     }
                 };
                 thread.start();
@@ -76,6 +76,37 @@ public class SimulatorView extends JFrame   {
             }
         });
         fileMenu.add(openItem);
+
+        JMenuItem runStep = new JMenuItem("Tick");
+        runStep.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        runStep.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                Thread thread = new Thread() {
+                    public void run() {
+                        sim.run(1);
+                    }
+                };
+                thread.start();
+            }
+        });
+        fileMenu.add(runStep);
+
+        JMenuItem runSteps = new JMenuItem("100 Ticks");
+        runSteps.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        runSteps.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                Thread thread = new Thread() {
+                    public void run() {
+                        sim.run(100);
+                    }
+                };
+                thread.start();
+            }
+        });
+        fileMenu.add(runSteps);
+
 
         JMenuItem quitItem = new JMenuItem("Quit");
         quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
@@ -86,11 +117,11 @@ public class SimulatorView extends JFrame   {
 
 
 
+
+
     }
 
-    public void hallo() {
-        System.out.println("hallo");
-    }
+
 
     private void quit()
     {
