@@ -125,7 +125,7 @@ public class Simulator {
             }
 
             else if(car instanceof ParkPassCar) {
-                car.setIsPaying(true);
+                simulatorView.removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
             }
         }
