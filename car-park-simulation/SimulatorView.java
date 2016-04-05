@@ -80,7 +80,7 @@ public class SimulatorView extends JFrame   {
         JMenuItem quitItem = new JMenuItem("Quit");
         quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
         quitItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { hallo(); }
+            public void actionPerformed(ActionEvent e) { quit(); }
         });
         fileMenu.add(quitItem);
 
@@ -90,6 +90,11 @@ public class SimulatorView extends JFrame   {
 
     public void hallo() {
         System.out.println("hallo");
+    }
+
+    private void quit()
+    {
+        System.exit(0);
     }
 
     public void updateView() {
