@@ -34,6 +34,12 @@ public class Simulator {
         }
     }
 
+    public void run(int steps) {
+        for (int i = 0; i < steps; i++) {
+            tick();
+        }
+    }
+
     private void tick() {
         // Advance the time by one minute.
         minute++;
