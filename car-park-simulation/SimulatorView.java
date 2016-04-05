@@ -65,7 +65,15 @@ public class SimulatorView extends JFrame   {
         JMenuItem openItem = new JMenuItem("Run");
         openItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, SHORTCUT_MASK));
         openItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { sim.run(); }
+            public void actionPerformed(ActionEvent e) {
+                Thread thread = new Thread() {
+                    public void run() {
+                        sim.run();
+                    }
+                };
+                thread.start();
+
+            }
         });
         fileMenu.add(openItem);
 
