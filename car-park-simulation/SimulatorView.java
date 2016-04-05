@@ -9,14 +9,15 @@ public class SimulatorView extends JFrame   {
     private int numberOfPlaces;
     private Car[][][] cars;
     private JFrame frame;
+    private Simulator sim;
 
-
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator sim) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
+        this.sim = sim;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
-        
+
         carParkView = new CarParkView();
         makeFrame();
        // menuBar = new JMenuBar();
@@ -25,11 +26,14 @@ public class SimulatorView extends JFrame   {
 
     public void makeFrame(){
         frame = new JFrame("carSim");
+        makeMenuBar(frame);
+
 
         Container contentPane = frame.getContentPane();
         //contentPane.add(stepLabel, BorderLayout.NORTH);
         contentPane.add(carParkView, BorderLayout.CENTER);
         contentPane.add(carParkView);
+
 
 
         //contentPane.add(population, BorderLayout.SOUTH);
@@ -46,8 +50,37 @@ public class SimulatorView extends JFrame   {
 
     }
 
+    private void makeMenuBar(JFrame frame){
+        final int SHORTCUT_MASK =
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-    public void openFile() {
+
+        JMenuBar menubar = new JMenuBar();
+        frame.setJMenuBar(menubar);
+
+        // create the File manu
+        JMenu fileMenu = new JMenu("Simulation");
+        menubar.add(fileMenu);
+
+        JMenuItem openItem = new JMenuItem("Run");
+        openItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, SHORTCUT_MASK));
+        openItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { sim.run(); }
+        });
+        fileMenu.add(openItem);
+
+        JMenuItem quitItem = new JMenuItem("Quit");
+        quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        quitItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { hallo(); }
+        });
+        fileMenu.add(quitItem);
+
+
+
+    }
+
+    public void hallo() {
         System.out.println("hallo");
     }
 
