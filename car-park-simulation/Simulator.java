@@ -1,20 +1,18 @@
+/**
+ * The simulation of a carpark system. It simulates the possibilities of how
+ * a car is parked.
+ *
+ */
+
 import java.util.Random;
 
 public class Simulator {
 
-    // Object for entering cars
     private CarQueue entranceCarQueue;
-
-    // Object for paying cars
     private CarQueue paymentCarQueue;
-
-    //Object for exiting cars
     private CarQueue exitCarQueue;
-
-    // Instance or the graphical display of the simulation
     private SimulatorView simulatorView;
 
-    // Time intervals
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
@@ -30,7 +28,7 @@ public class Simulator {
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
 
     /**
-     * Constructor for the simulation
+     * Defines different carqueues plus the simulation vieuw.
      */
     public Simulator() {
         entranceCarQueue = new CarQueue();
@@ -41,8 +39,9 @@ public class Simulator {
 
 
     /**
-     * Running the simulation for a duration
-     * @param steps amount of steps
+     * runs the simulation.
+     * the runtime is dependent on the given int steps.
+     * @param steps
      */
     public void run(int steps) {
         for (int i = 0; i < steps; i++) {
@@ -50,9 +49,7 @@ public class Simulator {
         }
     }
 
-    /**
-     * Executing the simulation per minutes
-     */
+
     private void tick() {
         // Advance the time by one minute.
         minute++;
@@ -67,6 +64,7 @@ public class Simulator {
         while (day > 6) {
             day -= 7;
         }
+
 
         Random random = new Random();
 
@@ -125,7 +123,7 @@ public class Simulator {
             }
 
             else if(car instanceof ParkPassCar) {
-                simulatorView.removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
+                car.setIsPaying(true);
                 exitCarQueue.addCar(car);
             }
         }

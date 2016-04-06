@@ -2,10 +2,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-
 /**
- * Jframe for the simulator
- * Draws parking spots
+ * This class creates the overall view of the simulation.
  */
 public class SimulatorView extends JFrame   {
     private CarParkView carParkView;
@@ -17,11 +15,11 @@ public class SimulatorView extends JFrame   {
     private Simulator sim;
 
     /**
-     * Constructor
-     *
-     * @param numberOfFloors int amount of floors to draw
-     * @param numberOfRows int amount of rows to draw
-     * @param numberOfPlaces int amount of spots per row to draw
+     * Contructs the overall view of the simulation.
+     * Makes the frame plus the menubar.
+     * @param numberOfFloors
+     * @param numberOfRows
+     * @param numberOfPlaces
      * @param sim
      */
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator sim) {
@@ -38,10 +36,11 @@ public class SimulatorView extends JFrame   {
     }
 
     /**
-     * Creates the window
+     * Constructs the JFrame.
+     * At start nothing will happen.
      */
     public void makeFrame(){
-        frame = new JFrame("ParkingGarage Simulator");
+        frame = new JFrame("carSim");
         makeMenuBar(frame);
 
 
@@ -67,7 +66,11 @@ public class SimulatorView extends JFrame   {
     }
 
     /**
-     * Creates menubar
+     * Constructs the menubar and sets it into the frame.
+     * The item "run" will make the program run for 10000 ticks.
+     * The item "tick" will make the program fun for one step.
+     * The item "100 ticks" will make the program run for 100 steps.
+     * The item "quit" shuts down the simulation.
      * @param frame
      */
     private void makeMenuBar(JFrame frame){
@@ -85,11 +88,6 @@ public class SimulatorView extends JFrame   {
         JMenuItem openItem = new JMenuItem("Run");
         openItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, SHORTCUT_MASK));
         openItem.addActionListener(new ActionListener() {
-
-            /**
-             * If run button is clicked or key combination is used, perform an action
-             * @param e the action
-             */
             public void actionPerformed(ActionEvent e) {
                 Thread thread = new Thread() {
                     public void run() {
@@ -118,7 +116,7 @@ public class SimulatorView extends JFrame   {
         fileMenu.add(runStep);
 
         JMenuItem runSteps = new JMenuItem("100 Ticks");
-        runSteps.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, SHORTCUT_MASK));
+        runSteps.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
         runSteps.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -134,7 +132,7 @@ public class SimulatorView extends JFrame   {
 
 
         JMenuItem quitItem = new JMenuItem("Quit");
-        quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, SHORTCUT_MASK));
+        quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
         quitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { quit(); }
         });
@@ -148,7 +146,7 @@ public class SimulatorView extends JFrame   {
 
 
     /**
-     * Quit the program
+     * Quit function: quits the applicaton.
      */
     private void quit()
     {
@@ -156,40 +154,40 @@ public class SimulatorView extends JFrame   {
     }
 
     /**
-     * Update the view
+     * Update function: update the carParkView.
      */
     public void updateView() {
         carParkView.updateView();
     }
 
     /**
-     * Get the amount of floors
-     * @return Amount of floors
+     * Return function: returns the numberOfFloors
+     * @return numberOfFloors
      */
      public int getNumberOfFloors() {
             return numberOfFloors;
         }
 
     /**
-     * Get the amount of rows
-     * @return amount of rows
+     * Return function: returns numberOfRows.
+     * @return numberOfRows.
      */
     public int getNumberOfRows() {
             return numberOfRows;
         }
 
     /**
-     * Get the amount of places
-     * @return amount of places
+     * Return function: returns the numberOfPlaces.
+     * @return numberOfPlaces.
      */
     public int getNumberOfPlaces() {
             return numberOfPlaces;
         }
 
     /**
-     * Get a car from a location
-     * @param location Location where to get the car from
-     * @return Car that is located at the given location
+     * Gives the car a place in the simulation.
+     * @param location
+     * @return
      */
     public Car getCarAt(Location location) {
             if (!locationIsValid(location)) {
@@ -199,10 +197,10 @@ public class SimulatorView extends JFrame   {
         }
 
     /**
-     * Set a car in a locaiton
-     * @param location Location where to put the car
-     * @param car The car object
-     * @return Boolean if the car is placed
+     *
+     * @param location
+     * @param car
+     * @return
      */
         public boolean setCarAt(Location location, Car car) {
             if (!locationIsValid(location)) {
@@ -218,9 +216,9 @@ public class SimulatorView extends JFrame   {
         }
 
     /**
-     * Remove a car
-     * @param location Location of the to be removed car
-     * @return Null if failed, Car object when it succeeded
+     * Removes care from a certain location.
+     * @param location
+     * @return
      */
     public Car removeCarAt(Location location) {
             if (!locationIsValid(location)) {
@@ -234,12 +232,8 @@ public class SimulatorView extends JFrame   {
             car.setLocation(null);
             return car;
         }
-
-    /**
-     * Gets the first free parking spot
-     * @return Location of a free spot, otherwise null
-     */
-    public Location getFirstFreeLocation() {
+    
+        public Location getFirstFreeLocation() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
                     for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -252,12 +246,8 @@ public class SimulatorView extends JFrame   {
             }
             return null;
         }
-
-    /**
-     * Retrieve the first leaving car in the garage
-     * @return Car when a ar is found, otherwise null
-     */
-    public Car getFirstLeavingCar() {
+    
+        public Car getFirstLeavingCar() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
                     for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -271,11 +261,8 @@ public class SimulatorView extends JFrame   {
             }
             return null;
         }
-
-    /**
-     * A tick of the simulation
-     */
-    public void tick() {
+    
+        public void tick() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
                     for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -290,11 +277,11 @@ public class SimulatorView extends JFrame   {
         }
 
     /**
-     * Check if a location is valid or not
-     * @param location Location to check
-     * @return Boolean if it is valid
+     * checks if the location is valid or not.
+     * @param location
+     * @return
      */
-    private boolean locationIsValid(Location location) {
+        private boolean locationIsValid(Location location) {
             int floor = location.getFloor();
             int row = location.getRow();
             int place = location.getPlace();
@@ -303,16 +290,10 @@ public class SimulatorView extends JFrame   {
             }
             return true;
         }
-
-    /**
-     * Graphical look of the car park. Draws floors, rows and parking spots
-     */
+    
     private class CarParkView extends JPanel {
         
-        // The size
         private Dimension size;
-
-        // Carpark image
         private Image carParkImage;    
     
         /**
@@ -324,6 +305,7 @@ public class SimulatorView extends JFrame   {
     
         /**
          * Overridden. Tell the GUI manager how big we would like to be.
+         *
          */
         public Dimension getPreferredSize() {
             return new Dimension(800, 500);
@@ -332,6 +314,7 @@ public class SimulatorView extends JFrame   {
         /**
          * Overriden. The car park view component needs to be redisplayed. Copy the
          * internal image to screen.
+         * @param g
          */
         public void paintComponent(Graphics g) {
             if (carParkImage == null) {
@@ -347,7 +330,10 @@ public class SimulatorView extends JFrame   {
                 g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
             }
         }
-    
+
+        /**
+         * Updates the view of the simulation.
+         */
         public void updateView() {
             // Create a new car park image if the size has changed.
             if (!size.equals(getSize())) {
