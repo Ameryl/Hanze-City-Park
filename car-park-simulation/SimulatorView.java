@@ -10,6 +10,10 @@ public class SimulatorView extends JFrame   {
     private Car[][][] cars;
     private JFrame frame;
     private Simulator sim;
+    private JMenuItem runSim;
+    private JMenuItem runTick;
+    private JMenuItem runSteps;
+    private JMenuItem quitSim;
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
@@ -62,58 +66,23 @@ public class SimulatorView extends JFrame   {
         JMenu fileMenu = new JMenu("Simulation");
         menubar.add(fileMenu);
 
-        JMenuItem openItem = new JMenuItem("Run");
-        openItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, SHORTCUT_MASK));
-        openItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Thread thread = new Thread() {
-                    public void run() {
-                        sim.run(10000);
-                    }
-                };
-                thread.start();
+        runSim = new JMenuItem("Run");
+        runSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, SHORTCUT_MASK));
+        fileMenu.add(runSim);
 
-            }
-        });
-        fileMenu.add(openItem);
+        runTick = new JMenuItem("Tick");
+        runTick.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        fileMenu.add(runTick);
 
-        JMenuItem runStep = new JMenuItem("Tick");
-        runStep.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
-        runStep.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                Thread thread = new Thread() {
-                    public void run() {
-                        sim.run(1);
-                    }
-                };
-                thread.start();
-            }
-        });
-        fileMenu.add(runStep);
-
-        JMenuItem runSteps = new JMenuItem("100 Ticks");
+        runSteps = new JMenuItem("100 Ticks");
         runSteps.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
-        runSteps.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                Thread thread = new Thread() {
-                    public void run() {
-                        sim.run(100);
-                    }
-                };
-                thread.start();
-            }
-        });
         fileMenu.add(runSteps);
 
 
-        JMenuItem quitItem = new JMenuItem("Quit");
-        quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
-        quitItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { quit(); }
-        });
-        fileMenu.add(quitItem);
+        quitSim = new JMenuItem("Quit");
+        quitSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        fileMenu.add(quitSim);
+        fileMenu.add(quitSim);
 
 
 
@@ -300,6 +269,8 @@ public class SimulatorView extends JFrame   {
             }
             repaint();
         }
+
+
     
         /**
          * Paint a place on this car park view in a given color.
@@ -312,6 +283,22 @@ public class SimulatorView extends JFrame   {
                     20 - 1,
                     10 - 1); // TODO use dynamic size or constants
         }
+    }
+
+    public void addRunListener(ActionListener listenForButtons) {
+        runSim.addActionListener(listenForButtons);
+    }
+
+    public void addTickListener(ActionListener listenForButtons) {
+        runTick.addActionListener(listenForButtons);
+    }
+
+    public void addRunStepsListener(ActionListener listenForButtons) {
+        runSteps.addActionListener(listenForButtons);
+    }
+
+    public void addQuitSimListener(ActionListener listenForButtons) {
+        quitSim.addActionListener(listenForButtons);
     }
 
 }

@@ -1,4 +1,9 @@
+import org.omg.CORBA.Environment;
+
+import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.Random;
+import java.awt.event.*;
 
 
 public  class SimulatorController {
@@ -8,12 +13,77 @@ public  class SimulatorController {
     public SimulatorController(SimulatorView view, SimulatorModel model) {
         this.view = view;
         this.model = model;
+
+        this.view.addRunListener(new RunListener());
+        this.view.addRunStepsListener(new RunStepsListener());
+        this.view.addQuitSimListener(new QuitSimListener());
+        this.view.addTickListener(new TickListener());
+    }
+
+    class RunListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+
+                run(10000);
+            }
+
+            catch(Exception e) {
+
+            }
+        }
+    }
+
+    class TickListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+                tick();
+            }
+
+            catch(Exception e) {
+
+            }
+        }
+    }
+
+    class RunStepsListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+                run(100);
+            }
+
+            catch(Exception e) {
+
+            }
+        }
+    }
+
+    class QuitSimListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+                System.exit(0);
+            }
+
+            catch(Exception e) {
+
+            }
+        }
     }
 
     public void run(int steps) {
-        for (int i = 0; i < steps; i++) {
-            tick();
-        }
+        Thread thread = new Thread() {
+            public void run() {
+                for (int i = 0; i < steps; i++) {
+                    tick();
+                }
+            }
+
+        };
+        thread.start();
+
     }
 
     private void tick() {
