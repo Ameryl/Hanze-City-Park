@@ -1,7 +1,7 @@
 public class Main{
     public static void main(String[]args)
     {
-        Simulator sim = new Simulator();
+        SimulatorController sim = new SimulatorController(new SimulatorView(), new SimulatorModel());
 
     }
 }

@@ -11,7 +11,7 @@ public class SimulatorView extends JFrame   {
     private JFrame frame;
     private Simulator sim;
 
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator sim) {
+    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
