@@ -5,10 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import java.awt.event.*;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 
 public  class SimulatorController {
     private SimulatorView view;
     private SimulatorModel model;
+    private Thread thread;
     private boolean isRunning = false;
 
 
@@ -35,7 +38,7 @@ public  class SimulatorController {
                 }
 
                 else {
-                    System.out.println("EEN SIM IS ALREDDIE RUNNING");
+                    showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
                 }
             }
 
@@ -98,6 +101,7 @@ public  class SimulatorController {
 
         public void actionPerformed(ActionEvent arg0) {
             try {
+                thread.stop();
                 isRunning = false;
             }
 
@@ -108,17 +112,18 @@ public  class SimulatorController {
     }
 
     public void run(int steps) {
-        while (isRunning) {
-            Thread thread = new Thread() {
-                public void run() {
+        thread = new Thread() {
+            public void run() {
+                while (isRunning) {
                     for (int i = 0; i < steps; i++) {
                         tick();
                     }
                 }
+            }
 
-            };
-            thread.start();
-        }
+        };
+        thread.start();
+
     }
 
     private void tick() {
