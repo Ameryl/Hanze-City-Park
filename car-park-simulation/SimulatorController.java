@@ -160,7 +160,7 @@ public  class SimulatorController {
             }
 
             else if(car instanceof ParkPassCar) {
-                car.setIsPaying(true);
+                view.removeCarAt(car.getLocation());
                 model.addExitCarQueue(car);
             }
         }
