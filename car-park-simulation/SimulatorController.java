@@ -11,6 +11,7 @@ public  class SimulatorController {
     private SimulatorModel model;
     private boolean isRunning = false;
 
+
     public SimulatorController(SimulatorView view, SimulatorModel model) {
         this.view = view;
         this.model = model;
@@ -80,6 +81,19 @@ public  class SimulatorController {
         public void actionPerformed(ActionEvent arg0) {
             try {
                 System.exit(0);
+            }
+
+            catch(Exception e) {
+
+            }
+        }
+    }
+
+    class StopSimListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+                isRunning = false;
             }
 
             catch(Exception e) {
