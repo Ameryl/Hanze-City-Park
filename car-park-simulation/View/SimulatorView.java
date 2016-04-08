@@ -1,6 +1,12 @@
+package View;
+
+import javax.sound.midi.MidiDevice;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+
+import Logic.*;
+import Runner.Simulator;
 
 public class SimulatorView extends JFrame   {
     private CarParkView carParkView;
@@ -21,7 +27,6 @@ public class SimulatorView extends JFrame   {
         this.numberOfPlaces = numberOfPlaces;
         this.sim = sim;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
-
         carParkView = new CarParkView();
         makeFrame();
        // menuBar = new JMenuBar();
@@ -31,7 +36,6 @@ public class SimulatorView extends JFrame   {
     public void makeFrame(){
         frame = new JFrame("carSim");
         makeMenuBar(frame);
-
 
         Container contentPane = frame.getContentPane();
         //contentPane.add(stepLabel, BorderLayout.NORTH);
@@ -67,7 +71,7 @@ public class SimulatorView extends JFrame   {
         menubar.add(fileMenu);
 
         runSim = new JMenuItem("Run");
-        runSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, SHORTCUT_MASK));
+        runSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, SHORTCUT_MASK));
         fileMenu.add(runSim);
 
         runTick = new JMenuItem("Tick");
@@ -83,14 +87,7 @@ public class SimulatorView extends JFrame   {
         quitSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, SHORTCUT_MASK));
         fileMenu.add(quitSim);
         fileMenu.add(quitSim);
-
-
-
-
-
     }
-
-
 
     private void quit()
     {

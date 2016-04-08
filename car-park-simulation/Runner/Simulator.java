@@ -1,8 +1,11 @@
-/**
+package Runner; /**
  * The simulation of a carpark system. It simulates the possibilities of how
  * a car is parked.
  *
  */
+
+import Logic.*;
+import View.SimulatorView;
 
 import java.util.Random;
 

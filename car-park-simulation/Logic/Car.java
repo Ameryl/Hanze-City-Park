@@ -1,3 +1,5 @@
+package Logic;
+
 public abstract class Car {
 
     private Location location;
@@ -5,7 +7,7 @@ public abstract class Car {
     private boolean isPaying;
 
     /**
-     * Constructor for objects of class Car
+     * Constructor for objects of class Logic.Car
      */
     public Car() {
 

@@ -1,4 +1,7 @@
-import java.util.Random;
+package Model;
+
+import Logic.Car;
+import Logic.CarQueue;
 
 public class SimulatorModel {
 
