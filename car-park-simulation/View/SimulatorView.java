@@ -1,6 +1,11 @@
+package View;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+
+import Logic.*;
+import Runner.Simulator;
 
 public class SimulatorView extends JFrame   {
     private CarParkView carParkView;

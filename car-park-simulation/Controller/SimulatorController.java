@@ -1,13 +1,13 @@
 package Controller;
 
-import View.SimulatorView;
-
 import Model.SimulatorModel;
 import Logic.*;
 
 import java.awt.event.ActionListener;
 import java.util.Random;
 import java.awt.event.*;
+
+import View.SimulatorView;
 
 
 public  class SimulatorController {

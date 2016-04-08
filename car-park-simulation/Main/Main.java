@@ -1,9 +1,9 @@
 package Main;
 
 import Controller.SimulatorController;
-import View.SimulatorView;
 
 import Model.SimulatorModel;
+import View.SimulatorView;
 
 public class Main{
     public static void main(String[]args)
