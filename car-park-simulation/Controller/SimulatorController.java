@@ -90,7 +90,7 @@ public  class SimulatorController {
                     tick();
                     isRunning = true;
                 } else {
-                    System.out.println("EEN SIM IS ALREDDIE RUNNING");
+                    showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
                 }
             }
 
@@ -108,7 +108,7 @@ public  class SimulatorController {
                     run(100);
                     isRunning = true;
                 } else {
-                    System.out.println("EEN SIM IS ALREDDIE RUNNING");
+                    showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
                 }
             }
 
