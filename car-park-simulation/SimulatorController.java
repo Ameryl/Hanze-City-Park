@@ -9,6 +9,7 @@ import java.awt.event.*;
 public  class SimulatorController {
     private SimulatorView view;
     private SimulatorModel model;
+    private boolean isRunning = false;
 
     public SimulatorController(SimulatorView view, SimulatorModel model) {
         this.view = view;
@@ -24,8 +25,12 @@ public  class SimulatorController {
 
         public void actionPerformed(ActionEvent arg0) {
             try {
-
-                run(10000);
+                if(isRunning == false) {
+                    run(10000);
+                    isRunning = true;
+                } else {
+                    System.out.println("EEN SIM IS ALREDDIE RUNNING");
+                }
             }
 
             catch(Exception e) {
@@ -38,7 +43,12 @@ public  class SimulatorController {
 
         public void actionPerformed(ActionEvent arg0) {
             try {
-                tick();
+                if(isRunning == false) {
+                    tick();
+                    isRunning = true;
+                } else {
+                    System.out.println("EEN SIM IS ALREDDIE RUNNING");
+                }
             }
 
             catch(Exception e) {
@@ -51,7 +61,12 @@ public  class SimulatorController {
 
         public void actionPerformed(ActionEvent arg0) {
             try {
-                run(100);
+                if(isRunning == false) {
+                    run(100);
+                    isRunning = true;
+                } else {
+                    System.out.println("EEN SIM IS ALREDDIE RUNNING");
+                }
             }
 
             catch(Exception e) {
@@ -74,16 +89,15 @@ public  class SimulatorController {
     }
 
     public void run(int steps) {
-        Thread thread = new Thread() {
-            public void run() {
-                for (int i = 0; i < steps; i++) {
-                    tick();
+            Thread thread = new Thread() {
+                public void run() {
+                    for (int i = 0; i < steps; i++) {
+                        tick();
+                    }
                 }
-            }
 
-        };
-        thread.start();
-
+            };
+            thread.start();
     }
 
     private void tick() {

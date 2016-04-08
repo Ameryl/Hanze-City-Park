@@ -75,12 +75,12 @@ public class SimulatorView extends JFrame   {
         fileMenu.add(runTick);
 
         runSteps = new JMenuItem("100 Ticks");
-        runSteps.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        runSteps.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, SHORTCUT_MASK));
         fileMenu.add(runSteps);
 
 
         quitSim = new JMenuItem("Quit");
-        quitSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        quitSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, SHORTCUT_MASK));
         fileMenu.add(quitSim);
         fileMenu.add(quitSim);
 
