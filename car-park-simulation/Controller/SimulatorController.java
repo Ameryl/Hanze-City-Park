@@ -1,9 +1,15 @@
+package Controller;
+
 import org.omg.CORBA.Environment;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import java.awt.event.*;
+
+import Model.SimulatorModel;
+import Logic.*;
+import View.SimulatorView;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
