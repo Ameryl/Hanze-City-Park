@@ -20,16 +20,21 @@ public  class SimulatorController {
         this.view.addRunStepsListener(new RunStepsListener());
         this.view.addQuitSimListener(new QuitSimListener());
         this.view.addTickListener(new TickListener());
+        this.view.addStopSimListener(new StopSimListener());
     }
+
+
 
     class RunListener implements ActionListener {
 
         public void actionPerformed(ActionEvent arg0) {
             try {
-                if(isRunning == false) {
-                    run(10000);
+                if(!isRunning) {
                     isRunning = true;
-                } else {
+                    run(10000);
+                }
+
+                else {
                     System.out.println("EEN SIM IS ALREDDIE RUNNING");
                 }
             }
@@ -103,6 +108,7 @@ public  class SimulatorController {
     }
 
     public void run(int steps) {
+        while (isRunning) {
             Thread thread = new Thread() {
                 public void run() {
                     for (int i = 0; i < steps; i++) {
@@ -112,6 +118,7 @@ public  class SimulatorController {
 
             };
             thread.start();
+        }
     }
 
     private void tick() {

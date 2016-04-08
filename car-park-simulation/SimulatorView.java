@@ -14,6 +14,7 @@ public class SimulatorView extends JFrame   {
     private JMenuItem runTick;
     private JMenuItem runSteps;
     private JMenuItem quitSim;
+    private JMenuItem pauseSim;
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
@@ -83,6 +84,10 @@ public class SimulatorView extends JFrame   {
         quitSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, SHORTCUT_MASK));
         fileMenu.add(quitSim);
         fileMenu.add(quitSim);
+
+        pauseSim = new JMenuItem("pause");
+        pauseSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        fileMenu.add(pauseSim);
 
 
 
@@ -301,4 +306,7 @@ public class SimulatorView extends JFrame   {
         quitSim.addActionListener(listenForButtons);
     }
 
+    public void addStopSimListener(ActionListener listenForButtons) {
+        pauseSim.addActionListener(listenForButtons);
+    }
 }
