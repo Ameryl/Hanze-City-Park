@@ -20,6 +20,8 @@ public class SimulatorView extends JFrame   {
     private JMenuItem runSteps;
     private JMenuItem quitSim;
     private JMenuItem pauseSim;
+    private JButton plus;
+    private JButton minus;
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
@@ -40,9 +42,15 @@ public class SimulatorView extends JFrame   {
 
 
         Container contentPane = frame.getContentPane();
+        contentPane.setLayout(new FlowLayout());
+        plus = new JButton("+");
+        minus = new JButton("-");
+        contentPane.add(plus);
+        contentPane.add(minus);
         //contentPane.add(stepLabel, BorderLayout.NORTH);
         contentPane.add(carParkView, BorderLayout.CENTER);
         contentPane.add(carParkView);
+
 
 
 
@@ -313,5 +321,12 @@ public class SimulatorView extends JFrame   {
 
     public void addStopSimListener(ActionListener listenForButtons) {
         pauseSim.addActionListener(listenForButtons);
+    }
+
+    public void addPlusSimListener(ActionListener listenForButtons) {
+        plus.addActionListener(listenForButtons);
+    }
+    public void addMinusSimListener(ActionListener listenForButtons) {
+        minus.addActionListener(listenForButtons);
     }
 }

@@ -30,7 +30,9 @@ public  class SimulatorController {
         this.view.addQuitSimListener(new QuitSimListener());
         this.view.addTickListener(new TickListener());
         this.view.addStopSimListener(new StopSimListener());
-    }
+        this.view.addPlusSimListener(new PlusListener());
+        this.view.addMinusSimListener(new MinusListener());
+}
 
 
 
@@ -46,6 +48,32 @@ public  class SimulatorController {
                 else {
                     showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
                 }
+            }
+
+            catch(Exception e) {
+
+            }
+        }
+    }
+
+    class PlusListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+                //ToDO aantal stappen toevoegen.
+            }
+
+            catch(Exception e) {
+
+            }
+        }
+    }
+
+    class MinusListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+                //ToDO aantal stappen verminderen.
             }
 
             catch(Exception e) {
