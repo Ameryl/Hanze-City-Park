@@ -1,8 +1,5 @@
 package Controller;
 
-import org.omg.CORBA.Environment;
-
-import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import java.awt.event.*;
@@ -13,13 +10,11 @@ import View.SimulatorView;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-
 public  class SimulatorController {
     private SimulatorView view;
     private SimulatorModel model;
     private Thread thread;
     private boolean isRunning = false;
-
 
     public SimulatorController(SimulatorView view, SimulatorModel model) {
         this.view = view;
@@ -34,8 +29,6 @@ public  class SimulatorController {
         this.view.addMinusSimListener(new MinusListener());
 }
 
-
-
     class RunListener implements ActionListener {
 
         public void actionPerformed(ActionEvent arg0) {
@@ -44,14 +37,11 @@ public  class SimulatorController {
                     isRunning = true;
                     run(10000);
                 }
-
                 else {
                     showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
                 }
             }
-
             catch(Exception e) {
-
             }
         }
     }

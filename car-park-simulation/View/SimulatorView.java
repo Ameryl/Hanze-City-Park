@@ -7,7 +7,7 @@ import java.awt.*;
 import Logic.*;
 import Runner.Simulator;
 
-public class SimulatorView extends JFrame   {
+public class SimulatorView extends JFrame  {
     private CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
@@ -37,9 +37,8 @@ public class SimulatorView extends JFrame   {
     }
 
     public void makeFrame(){
-        frame = new JFrame("carSim");
+        frame = new JFrame("Car Park Simulator");
         makeMenuBar(frame);
-
 
         Container contentPane = frame.getContentPane();
         contentPane.setLayout(new FlowLayout());
@@ -51,16 +50,10 @@ public class SimulatorView extends JFrame   {
         contentPane.add(carParkView, BorderLayout.CENTER);
         contentPane.add(carParkView);
 
-
-
-
         //contentPane.add(population, BorderLayout.SOUTH);
-
 
         frame.pack();
         frame.setVisible(true);
-
-
 
         updateView();
 
@@ -102,17 +95,6 @@ public class SimulatorView extends JFrame   {
         pauseSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
         fileMenu.add(pauseSim);
 
-
-
-
-
-    }
-
-
-
-    private void quit()
-    {
-        System.exit(0);
     }
 
     public void updateView() {
