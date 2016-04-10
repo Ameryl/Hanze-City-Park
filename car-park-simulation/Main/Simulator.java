@@ -4,172 +4,82 @@ package Main; /**
  *
  */
 
+
+import Controller.*;
+import View.AbstractView;
 import Logic.*;
-import Runner.SimulatorRunner;
 import View.SimulatorView;
 
-import java.util.Random;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
 
 public class Simulator {
-
-    // Object for entering cars
-    private CarQueue entranceCarQueue;
-
-    // Object for paying cars
-    private CarQueue paymentCarQueue;
-
-    //Object for exiting cars
-    private CarQueue exitCarQueue;
-
-    // Instance or the graphical display of the simulation
-    private SimulatorView simulatorView;
-
-    // Time intervals
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
-
-    private int tickPause = 100;
-
-    int weekDayArrivals= 50; // average number of arriving cars per hour
-    int weekendArrivals = 90; // average number of arriving cars per hour
-
-    int enterSpeed = 3; // number of cars that can enter per minute
-    int paymentSpeed = 10; // number of cars that can pay per minute
-    int exitSpeed = 9; // number of cars that can leave per minute
-    int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
-
     /**
      * Constructor for the simulation
      */
+    private JFrame frame;
+    private JMenuItem runSim;
+    private JMenuItem runTick;
+    private JMenuItem runSteps;
+    private JMenuItem quitSim;
+    private JMenuItem pauseSim;
+    private AbstractView SimulatorView;
+    private SimulatorModel simModel;
+    private AbstractController SimulatorController;
+
     public Simulator() {
-        entranceCarQueue = new CarQueue();
-        paymentCarQueue = new CarQueue();
-        exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
+        simModel = new SimulatorModel(3, 6, 30);
+        SimulatorController = new SimulatorController(simModel);
+        SimulatorView = new SimulatorView(simModel);
+        frame = new JFrame("Car Park Simulator");
+        frame.setSize(900, 500);
+        makeMenuBar(frame);
+        //contentPane.add(stepLabel, BorderLayout.NORTH);
+
+        frame.getContentPane().add(SimulatorController);
+        frame.getContentPane().add(SimulatorView);
+        frame.setVisible(true);
+        SimulatorView.updateView();
+
     }
 
-
-    /**
-     * Running the simulation for a duration
-     * @param steps amount of steps
-     */
-    public void run(int steps) {
-        for (int i = 0; i < steps; i++) {
-            tick();
-        }
-    }
-
-    /**
-     * Executing the simulation per minutes
-     */
-    private void tick() {
-        // Advance the time by one minute.
-        minute++;
-        while (minute > 59) {
-            minute -= 60;
-            hour++;
-        }
-        while (hour > 23) {
-            hour -= 24;
-            day++;
-        }
-        while (day > 6) {
-            day -= 7;
-        }
-
-        Random random = new Random();
-
-        // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = day < 5
-                ? weekDayArrivals
-                : weekendArrivals;
-
-        // Calculate the number of cars that arrive this minute.
-        double standardDeviation = averageNumberOfCarsPerHour * 0.1;
-        double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
-        int numberOfCarsPerMinute = (int)Math.round(numberOfCarsPerHour / 60);
-
-        // Add the cars to the back of the queue.
-        for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            if(random.nextInt(10) < parkPassChance) {
-                Car car = new ParkPassCar();
-                entranceCarQueue.addCar(car);
-            }
-            else {
-                Car car = new AdHocCar();
-                entranceCarQueue.addCar(car);
-            }
+    private void makeMenuBar(JFrame frame){
+        final int SHORTCUT_MASK =
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 
-        }
+        JMenuBar menubar = new JMenuBar();
+        frame.setJMenuBar(menubar);
 
-        // Remove car from the front of the queue and assign to a parking space.
-        for (int i = 0; i < enterSpeed; i++) {
-            Car car = entranceCarQueue.removeCar();
-            if (car == null) {
-                break;
-            }
-            // Find a space for this car.
-            Location freeLocation = simulatorView.getFirstFreeLocation();
-            if (freeLocation != null) {
-                simulatorView.setCarAt(freeLocation, car);
-                int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
-                car.setMinutesLeft(stayMinutes);
-            }
-        }
+        // create the File manu
+        JMenu fileMenu = new JMenu("Simulation");
+        menubar.add(fileMenu);
 
-        // Perform car park tick.
-        simulatorView.tick();
+        runSim = new JMenuItem("Run");
+        runSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, SHORTCUT_MASK));
+        fileMenu.add(runSim);
 
-        // Add leaving cars to the exit queue.
-        while (true) {
-            Car car = simulatorView.getFirstLeavingCar();
-            if (car == null) {
-                break;
-            }
+        runTick = new JMenuItem("Tick");
+        runTick.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        fileMenu.add(runTick);
 
-            if(car instanceof AdHocCar) {
-                car.setIsPaying(true);
-                paymentCarQueue.addCar(car);
-            }
-
-            else if(car instanceof ParkPassCar) {
-                simulatorView.removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
-                exitCarQueue.addCar(car);
-            }
-        }
-
-        // Let cars pay.
-        for (int i = 0; i < paymentSpeed; i++) {
-            Car car = paymentCarQueue.removeCar();
-            if (car == null) {
-                break;
-            }
-            // TODO Handle payment.
+        runSteps = new JMenuItem("100 Ticks");
+        runSteps.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, SHORTCUT_MASK));
+        fileMenu.add(runSteps);
 
 
-            simulatorView.removeCarAt(car.getLocation());
-            exitCarQueue.addCar(car);
-        }
+        quitSim = new JMenuItem("Quit");
+        quitSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, SHORTCUT_MASK));
+        fileMenu.add(quitSim);
+        fileMenu.add(quitSim);
 
-        // Let cars leave.
-        for (int i = 0; i < exitSpeed; i++) {
-            Car car = exitCarQueue.removeCar();
-            if (car == null) {
-                break;
-            }
-            // Bye!
-        }
+        pauseSim = new JMenuItem("pause");
+        pauseSim.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        fileMenu.add(pauseSim);
 
-        // Update the car park view.
-        simulatorView.updateView();
-
-        // Pause.
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
+
+
