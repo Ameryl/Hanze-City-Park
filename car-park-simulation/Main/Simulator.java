@@ -41,14 +41,13 @@ public class Simulator {
         frame.getContentPane().add(SimulatorController);
         frame.getContentPane().add(SimulatorView);
         frame.setVisible(true);
-        SimulatorView.updateView();
+        simModel.notifyViews();
 
     }
 
     private void makeMenuBar(JFrame frame){
         final int SHORTCUT_MASK =
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-
 
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);

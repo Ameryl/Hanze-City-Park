@@ -12,9 +12,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     private Car[][][] cars;
 
-    private Thread thread;
-    private boolean isRunning = false;
-
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
@@ -56,11 +53,13 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     @Override
     public void run() {
-            for (int i = 0; i < 10000; i++) {
-                tick();
-            }
+        int i = 0;
+        while (i < 10){
+            tick();
+            notifyViews();
+            i++;
         }
-
+    }
 
 
     private void tick() {
@@ -100,7 +99,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 entranceCarQueue.addCar(car);
             }
 
-
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -116,10 +114,11 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
+            this.notifyViews();
         }
 
         // Perform car park tick.
-        tick();
+        ticker();
 
         // Add leaving cars to the exit queue.
         while (true) {
@@ -247,13 +246,12 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return null;
     }
 
-    /*
-        public void tick() {
+    private void ticker() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
                     for (int place = 0; place < getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
-                        Car car = getCarAt(location);
+                        Car car = this.getCarAt(location);
                         if (car != null) {
                             car.tick();
                         }
@@ -261,7 +259,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 }
             }
         }
-    */
+
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();

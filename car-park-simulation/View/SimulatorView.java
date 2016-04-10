@@ -1,7 +1,6 @@
 package View;
 
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
 
 import Logic.*;
@@ -10,33 +9,23 @@ import Logic.*;
 public class SimulatorView extends AbstractView {
 
     private Image carParkImage;
-    private JLabel title;
     private Dimension size;
 
     public SimulatorView(SimulatorModel sim) {
         super(sim);
-        size = new Dimension(1900, 1300);
-        this.title = new JLabel("birdView");
-        add(title);
+        size = new Dimension();
     }
 
-    @Override
+
     public void paintComponent(Graphics g) {
         if (carParkImage == null) {
             return;
         }
-
-        Dimension currentSize = getSize();
-        if (size.equals(currentSize)) {
             g.drawImage(carParkImage, 0, 0, null);
-        } else {
-            // Rescale the previous image.
-            g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
-        }
     }
-
+    @Override
     public void updateView() {
-        SimulatorModel sim = (SimulatorModel) super.sim;
+        SimulatorModel sim = (SimulatorModel)super.sim;
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {
             size = getSize();
@@ -62,14 +51,8 @@ public class SimulatorView extends AbstractView {
                 }
             }
         }
-        setVisible(true);
-        super.updateView();
     }
 
-
-    /**
-     * Paint a place on this car park view in a given color.
-     */
     private void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
         graphics.fillRect(

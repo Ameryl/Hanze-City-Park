@@ -17,8 +17,6 @@ public class SimulatorController extends AbstractController implements ActionLis
     private JButton pluseen;
     private JButton start;
     private JButton stop;
-    private Thread thread;
-    private boolean isRunning = false;
 
     public SimulatorController(SimulatorModel sim) {
         super(sim);
@@ -31,7 +29,7 @@ public class SimulatorController extends AbstractController implements ActionLis
         pluseen.addActionListener(this);
         start = new JButton("Start");
         start.addActionListener(this);
-        stop = new JButton("Stop");
+        stop = new JButton("UPDATE");
         stop.addActionListener(this);
 
         this.setLayout(null);
