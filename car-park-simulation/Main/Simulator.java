@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
 
 public class Simulator {
     /**
-     * Constructor for the simulation
+     * Constructor for the simulati
      */
     private JFrame frame;
     private JMenuItem runSim;
