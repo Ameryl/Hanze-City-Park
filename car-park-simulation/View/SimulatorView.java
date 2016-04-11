@@ -23,6 +23,7 @@ public class SimulatorView extends JFrame  {
     private JButton plus;
     private JButton minus;
     private JLabel stepCount;
+    private JLabel omzetCount;
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
@@ -46,10 +47,11 @@ public class SimulatorView extends JFrame  {
         plus = new JButton("+");
         minus = new JButton("-");
         stepCount = new JLabel("Steps : 0");
-
+        omzetCount = new JLabel("Omzet : 0");
         contentPane.add(plus);
         contentPane.add(minus);
         contentPane.add(stepCount);
+        contentPane.add(omzetCount);
         //contentPane.add(stepLabel, BorderLayout.NORTH);
         contentPane.add(carParkView, BorderLayout.CENTER);
         contentPane.add(carParkView);
@@ -324,6 +326,15 @@ public class SimulatorView extends JFrame  {
     public void setStepCounterValue(int steps) {
         try {
             stepCount.setText("Steps : " + steps);
+        }
+
+        catch (Exception ex) {
+
+        }
+    }
+    public void setOmzetCount(int omzet) {
+        try {
+            omzetCount.setText("Omzet: " + omzet + "€");
         }
 
         catch (Exception ex) {
