@@ -24,6 +24,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private int minute = 0;
 
     private int omzet = 0;
+    private int aantalCars = 0;
 
     private int tickPause = 100;
     private int typeCar = 0;
@@ -93,20 +94,21 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (random.nextInt(10) < parkPassChance) {
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
+                aantalCars ++;
 
             }
                 else if(random.nextInt(10) < Reservationchance) {
                     Car car = new ReservationCar();
                     entranceCarQueue.addCar(car);
-
+                aantalCars ++;
                 }
 
              else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
-
+                aantalCars ++;
             }
-
+            SimulatorController.setCarCount(aantalCars);
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -154,6 +156,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
             }
+
         }
 
         // Let cars pay.

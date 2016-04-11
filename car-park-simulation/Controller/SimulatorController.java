@@ -10,6 +10,7 @@ public class SimulatorController extends AbstractController implements ActionLis
     private JButton start;
     private JButton stop;
     private static JLabel omzetCount;
+    private static JLabel carCount;
 
     public SimulatorController(SimulatorModel sim) {
         super(sim);
@@ -21,26 +22,30 @@ public class SimulatorController extends AbstractController implements ActionLis
         stop.addActionListener(this);
 
         omzetCount = new JLabel("Omzet : 0€");
+        carCount = new JLabel ("aantal auto's :");
+
 
         add(start);
         add(stop);
         add(omzetCount);
+        add(carCount);
 
         stop.setBounds(10, 10, 150, 30);
         start.setBounds(10, 70, 150, 30);
 
+
         setVisible(true);
     }
 
-
-    public void start() {
-        sim.start();
-    }
-
-
-    public void stop() {
-        sim.run = false;
-    }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource()==start) {
+                sim.start();
+            }
+            if (e.getSource()==stop) {
+                sim.stop();
+            }
+        }
 
     public static void setOmzetCount(int omzet) {
         try {
@@ -52,13 +57,13 @@ public class SimulatorController extends AbstractController implements ActionLis
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==start) {
-            start();
+    public static void setCarCount(int aantalCars) {
+        try {
+            carCount.setText("aantal bezochte auto's: " + aantalCars );
         }
-        if (e.getSource()==stop) {
-            stop();
+
+        catch (Exception ex) {
+
         }
     }
     }
