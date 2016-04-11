@@ -16,6 +16,7 @@ public  class SimulatorController {
     private Thread thread;
     private boolean isRunning = false;
     private int steps = 0;
+    private int omzet = 0;
     public SimulatorController(SimulatorView view, SimulatorModel model) {
         this.view = view;
         this.model = model;
@@ -241,7 +242,8 @@ public  class SimulatorController {
             if (car == null) {
                 break;
             }
-            // TODO Handle payment.
+            omzet += 5;
+            view.setOmzetCount(omzet);
 
 
             view.removeCarAt(car.getLocation());
