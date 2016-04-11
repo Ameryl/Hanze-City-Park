@@ -28,6 +28,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     private int tickPause = 100;
     private int typeCar = 0;
+    private int typeCarRow = 0;
 
 
     int weekDayArrivals = 200; // average number of arriving cars per hour
@@ -115,12 +116,15 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             Car car = entranceCarQueue.removeCar();
             if (car instanceof ReservationCar){
                 typeCar = 0;
+                typeCarRow = 0;
             }
             else if (car instanceof ParkPassCar){
                 typeCar = 0;
+                typeCarRow = 0;
             }
             else {
-                typeCar = 2;
+                typeCar = 1;
+                typeCarRow = 2;
             }
             if (car == null) {
                 break;
@@ -226,13 +230,14 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         }
         cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
         car.setLocation(null);
+
         return car;
     }
 
 
         public Location getFirstFreeLocation() {
         for (int floor = typeCar; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
+            for (int row = typeCarRow; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
                     if (getCarAt(location) == null) {
