@@ -1,8 +1,8 @@
 package View;
 
+import Logic.AbstractModel;
 import Logic.SimulatorModel;
 
-import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -13,9 +13,6 @@ public class infoView extends AbstractView {
 
     public infoView(SimulatorModel sim) {
         super(sim);
-
-    }
-    public void paintComponent(Graphics g) {
         this.Labeltje = new JLabel();
         Labeltje.setText("DIT IS HET ENIGE WAT IN DIE KUT VIEW GEZIEN MOET WORDEN");
         add(Labeltje);
