@@ -1,6 +1,6 @@
 package Logic;
 
-import Controller.SimulatorController;
+
 import View.*;
 
 import java.util.Random;
@@ -25,6 +25,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     private int omzet = 0;
     private int aantalCars = 0;
+    private int currentCars =0;
 
     private int tickPause = 100;
     private int typeCar = 0;
@@ -96,19 +97,23 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
                 aantalCars++;
+                currentCars++;
             }
                 else if(random.nextInt(10) < Reservationchance) {
                     Car car = new ReservationCar();
                     entranceCarQueue.addCar(car);
                 aantalCars++;
+                currentCars++;
                 }
 
              else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
                 aantalCars++;
+                currentCars++;
             }
             infoView.setCarCount(aantalCars);
+            infoView.setCurrentCarCount(currentCars);
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -117,18 +122,22 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car instanceof ReservationCar){
                 typeCar = 0;
                 typeCarRow = 0;
+
             }
             else if (car instanceof ParkPassCar){
                 typeCar = 0;
                 typeCarRow = 0;
+
             }
             else {
                 typeCar = 1;
                 typeCarRow = 2;
+
             }
             if (car == null) {
                 break;
             }
+            infoView.setCarCount(aantalCars);
             // Find a space for this car.
             Location freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
@@ -151,14 +160,18 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car instanceof AdHocCar) {
                 car.setIsPaying(true);
                 paymentCarQueue.addCar(car);
+                currentCars--;
             } else if (car instanceof ParkPassCar) {
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
+                currentCars--;
             }
             else if(car instanceof ReservationCar) {
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
+                currentCars--;
             }
+            infoView.setCurrentCarCount(currentCars);
         }
 
         // Let cars pay.

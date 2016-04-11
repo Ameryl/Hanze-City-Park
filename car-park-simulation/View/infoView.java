@@ -10,15 +10,20 @@ import javax.swing.*;
 public class infoView extends AbstractView {
     private static JLabel omzetCount;
     private static JLabel carCount;
+    private static JLabel currentCount;
 
     public infoView(SimulatorModel sim) {
         super(sim);
         omzetCount = new JLabel("Omzet : 0€");
-        carCount = new JLabel("Aantal auto's: 0");
+        carCount = new JLabel("Aantal bezochte auto's: 0");
+        currentCount = new JLabel("aantal huidige auto's: 0");
+
+
 
 
         add(omzetCount);
         add(carCount);
+        add(currentCount);
     }
 
     public static void setOmzetCount(int omzet) {
@@ -33,7 +38,17 @@ public class infoView extends AbstractView {
 
     public static void setCarCount(int aantalCars) {
         try {
-            carCount.setText("Aantal auto's: " + aantalCars);
+            carCount.setText("Aantal bezochte auto's: " + aantalCars);
+        }
+
+        catch (Exception ex) {
+
+        }
+    }
+
+    public static void setCurrentCarCount(int currentCars) {
+        try {
+            currentCount.setText("Aantal huidige auto's: " + currentCars);
         }
 
         catch (Exception ex) {
