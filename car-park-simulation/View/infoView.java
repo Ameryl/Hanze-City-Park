@@ -27,7 +27,7 @@ public class infoView extends AbstractView {
 
     public static void setOmzetCount(int omzet) {
         try {
-            omzetCount.setText("Omzet: " + omzet + "€");
+            omzetCount.setText("Revenue: " + omzet + "€");
         }
 
         catch (Exception ex) {
@@ -37,7 +37,7 @@ public class infoView extends AbstractView {
 
     public static void setCarCount(int aantalCars) {
         try {
-            carCount.setText("Aantal bezochte auto's: " + aantalCars);
+            carCount.setText("Total amount of cars: " + aantalCars);
         }
 
         catch (Exception ex) {
@@ -47,7 +47,7 @@ public class infoView extends AbstractView {
 
     public static void setCurrentCarCount(int currentCars) {
         try {
-            currentCount.setText("Aantal huidige auto's: " + currentCars);
+            currentCount.setText("Amount current cars: " + currentCars);
         }
 
         catch (Exception ex) {
