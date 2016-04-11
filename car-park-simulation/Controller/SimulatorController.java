@@ -1,54 +1,44 @@
 package Controller;
 
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
 
-import Logic.*;
-import Logic.Car;
 import Logic.SimulatorModel;
-import Main.Simulator;
-import View.SimulatorView;
-
 import javax.swing.*;
 
 public class SimulatorController extends AbstractController implements ActionListener {
-    private JButton mineen;
-    private JButton pluseen;
     private JButton start;
     private JButton stop;
 
     public SimulatorController(SimulatorModel sim) {
         super(sim);
 
-        // menuBar = new JMenuBar();
-        setSize(500, 50);
-        mineen = new JButton("-1");
-        mineen.addActionListener(this);
-        pluseen = new JButton("+1");
-        pluseen.addActionListener(this);
-        start = new JButton("Start");
+        setSize(500, 500);
+
+        start = new JButton("START");
         start.addActionListener(this);
-        stop = new JButton("UPDATE");
+
+        stop = new JButton("STOP");
         stop.addActionListener(this);
 
         this.setLayout(null);
-        add(mineen);
-        add(pluseen);
+
         add(start);
         add(stop);
-        mineen.setBounds(50, 10, 70, 30);
-        pluseen.setBounds(140, 10, 70, 30);
-        start.setBounds(229, 10, 70, 30);
-        stop.setBounds(319, 10, 70, 30);
+
+        stop.setBounds(10, 10, 150, 30);
+        start.setBounds(10, 70, 150, 30);
 
         setVisible(true);
-
     }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()==start) {
-                sim.run();
+                sim.start();
+            }
+            if (e.getSource()==stop) {
+                sim.stop();
             }
         }
     }

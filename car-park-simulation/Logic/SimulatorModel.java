@@ -10,6 +10,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private static int numberOfRows;
     private static int numberOfPlaces;
 
+    private boolean run;
+
     private Car[][][] cars;
 
     private CarQueue entranceCarQueue;
@@ -42,25 +44,20 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
     }
 
-    /**
-     * Running the simulation for a duration
-     *
-     * @param steps amount of steps
-     *              <p>
-     *              /**
-     *              Executing the simulation per minutes
-     */
-
-    @Override
-    public void run() {
-        int i = 0;
-        while (i < 10){
-            tick();
-            notifyViews();
-            i++;
-        }
+    public void start() {
+        new Thread(this).start();
     }
 
+    public void stop() {
+        run=false;
+    }
+
+    public void run() {
+      run = true;
+        while(run){
+           tick();
+       }
+    }
 
     private void tick() {
         // Advance the time by one minute.
@@ -114,7 +111,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
-            this.notifyViews();
         }
 
         // Perform car park tick.
@@ -173,20 +169,10 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return numberOfFloors;
     }
 
-    /**
-     * Get number of rows
-     *
-     * @return int number of rows in the car park
-     */
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
-    /**
-     * Get number of places
-     *
-     * @return int number of places in the car park
-     */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
@@ -257,6 +243,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                         }
                     }
                 }
+
             }
         }
 
@@ -376,6 +363,5 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     public Car removeExitCarQueue() {
         return exitCarQueue.removeCar();
     }
-
 
 }
