@@ -32,15 +32,15 @@ public class SimulatorController extends AbstractController implements ActionLis
         setVisible(true);
     }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource()==start) {
-                sim.start();
-            }
-            if (e.getSource()==stop) {
-                sim.stop();
-            }
-        }
+
+    public void start() {
+        sim.start();
+    }
+
+
+    public void stop() {
+        sim.run = false;
+    }
 
     public static void setOmzetCount(int omzet) {
         try {
@@ -49,6 +49,16 @@ public class SimulatorController extends AbstractController implements ActionLis
 
         catch (Exception ex) {
 
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==start) {
+            start();
+        }
+        if (e.getSource()==stop) {
+            stop();
         }
     }
     }

@@ -11,7 +11,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private static int numberOfRows;
     private static int numberOfPlaces;
 
-    private boolean run;
+    public boolean run;
 
     private Car[][][] cars;
 
@@ -52,10 +52,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     public void start() {
         new Thread(this).start();
-    }
-
-    public void stop() {
-        run=false;
     }
 
     public void run() {

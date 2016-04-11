@@ -56,5 +56,7 @@ public class SimulatorView extends AbstractView {
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
-}
+
+    }
+
 
