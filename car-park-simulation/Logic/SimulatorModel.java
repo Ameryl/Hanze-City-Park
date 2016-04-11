@@ -1,5 +1,6 @@
 package Logic;
 
+import Controller.SimulatorController;
 import View.*;
 
 import java.util.Random;
@@ -21,6 +22,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
+
+    private int omzet = 0;
 
     private int tickPause = 100;
 
@@ -139,7 +142,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 break;
             }
             // TODO Handle payment.
-
+            omzet += 5;
+            SimulatorController.setOmzetCount(omzet);
 
             removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
