@@ -160,20 +160,20 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car instanceof AdHocCar) {
                 car.setIsPaying(true);
                 paymentCarQueue.addCar(car);
-                currentCars--;
+
             } else if (car instanceof ParkPassCar) {
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
-                currentCars--;
+
             }
             else if(car instanceof ReservationCar) {
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
-                currentCars--;
+
             }
-            infoView.setCurrentCarCount(currentCars);
+
         }
-        //niek is hier ook dik
+
 
         // Let cars pay.
         for (int i = 0; i < paymentSpeed; i++) {
@@ -186,16 +186,20 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             infoView.setOmzetCount(omzet);
 
             removeCarAt(car.getLocation());
+
             exitCarQueue.addCar(car);
+
         }
 
         // Let cars leave.
         for (int i = 0; i < exitSpeed; i++) {
             Car car = exitCarQueue.removeCar();
+            currentCars--;
             if (car == null) {
                 break;
             }
             // Bye!
+            infoView.setCurrentCarCount(currentCars);
         }
 
         // Update the car park view.
