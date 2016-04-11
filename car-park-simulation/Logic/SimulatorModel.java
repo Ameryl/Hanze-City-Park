@@ -173,6 +173,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             }
             infoView.setCurrentCarCount(currentCars);
         }
+        //niek is hier ook dik
 
         // Let cars pay.
         for (int i = 0; i < paymentSpeed; i++) {
