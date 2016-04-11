@@ -135,11 +135,11 @@ public  class SimulatorController {
         }
     }
 
-    public void run(int steps) {
+    public void run(final int stepcount) {
         thread = new Thread() {
             public void run() {
                 while (isRunning) {
-                    for (int i = 0; i < steps; i++) {
+                    for (int i = 0; i < stepcount; i++) {
                         tick();
                     }
                 }
