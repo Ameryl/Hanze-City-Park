@@ -16,5 +16,15 @@ public class infoView extends AbstractView {
         add(omzetCount);
     }
 
+    public static void setOmzetCount(int omzet) {
+        try {
+            omzetCount.setText("Omzet: " + omzet + "€");
+        }
+
+        catch (Exception ex) {
+
+        }
+    }
+
 
 }

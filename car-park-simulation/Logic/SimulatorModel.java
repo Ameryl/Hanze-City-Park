@@ -164,7 +164,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             }
             // TODO Handle payment.
             omzet += 5;
-            SimulatorController.setOmzetCount(omzet);
+            infoView.setOmzetCount(omzet);
 
             removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);

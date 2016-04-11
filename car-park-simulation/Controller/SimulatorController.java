@@ -9,7 +9,6 @@ import javax.swing.*;
 public class SimulatorController extends AbstractController implements ActionListener {
     private JButton start;
     private JButton stop;
-    private static JLabel omzetCount;
 
     public SimulatorController(SimulatorModel sim) {
         super(sim);
@@ -20,11 +19,10 @@ public class SimulatorController extends AbstractController implements ActionLis
         stop = new JButton("STOP");
         stop.addActionListener(this);
 
-        omzetCount = new JLabel("Omzet : 0€");
 
         add(start);
         add(stop);
-        add(omzetCount);
+
 
         stop.setBounds(10, 10, 150, 30);
         start.setBounds(10, 70, 150, 30);
@@ -42,15 +40,7 @@ public class SimulatorController extends AbstractController implements ActionLis
         sim.run = false;
     }
 
-    public static void setOmzetCount(int omzet) {
-        try {
-            omzetCount.setText("Omzet: " + omzet + "€");
-        }
 
-        catch (Exception ex) {
-
-        }
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
