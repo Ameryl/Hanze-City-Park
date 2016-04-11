@@ -20,7 +20,6 @@ public class infoView extends AbstractView {
 
 
 
-
         add(omzetCount);
         add(carCount);
         add(currentCount);

@@ -52,7 +52,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
     }
 
-    public void start() {
+    public void start()
+    {
         new Thread(this).start();
     }
 
@@ -63,7 +64,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
        }
     }
 
-    private void tick() {
+    public void tick() {
         // Advance the time by one minute.
         minute++;
         while (minute > 59) {
