@@ -30,7 +30,6 @@ public class Simulator {
 
         frame = new JFrame("Car Park Simulator");
         frame.setSize(1100, 500);
-        frame.setBackground(Color.blue);
         frame.setResizable(false);
         frame.setLayout(null);
 

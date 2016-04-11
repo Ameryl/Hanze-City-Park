@@ -34,6 +34,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
+    int Reservationchance = 2; // chance of a car having a reservation instead of a normal customer
 
     public SimulatorModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
@@ -94,7 +95,13 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (random.nextInt(10) < parkPassChance) {
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
-            } else {
+            }
+                else if(random.nextInt(10) < Reservationchance) {
+                    Car car = new ReservationCar();
+                    entranceCarQueue.addCar(car);
+                }
+
+             else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
             }
@@ -131,6 +138,10 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 paymentCarQueue.addCar(car);
             } else if (car instanceof ParkPassCar) {
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
+                exitCarQueue.addCar(car);
+            }
+            else if(car instanceof ReservationCar) {
+                removeCarAt(car.getLocation());
                 exitCarQueue.addCar(car);
             }
         }
