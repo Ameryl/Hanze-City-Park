@@ -11,6 +11,7 @@ import Logic.*;
 import View.SimulatorView;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class Simulator {
@@ -29,18 +30,19 @@ public class Simulator {
 
         frame = new JFrame("Car Park Simulator");
         frame.setSize(1100, 500);
+        frame.setBackground(Color.blue);
         frame.setResizable(false);
         frame.setLayout(null);
 
-        frame.getContentPane().add(SimulatorController);
-        frame.getContentPane().add(SimulatorView);
 
-        SimulatorView.setBounds(10,10,800,500);
-        SimulatorController.setBounds(850,200,900,500);
+        frame.getContentPane().add(SimulatorView);
+        frame.getContentPane().add(SimulatorController);
+
+        SimulatorView.setBounds(0,0,800,500);
+        SimulatorController.setBounds(850,200,200,200);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        //simModel.notifyViews();
         frame.setVisible(true);
     }
 }

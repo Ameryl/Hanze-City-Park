@@ -13,15 +13,11 @@ public class SimulatorController extends AbstractController implements ActionLis
     public SimulatorController(SimulatorModel sim) {
         super(sim);
 
-        setSize(500, 500);
-
         start = new JButton("START");
         start.addActionListener(this);
 
         stop = new JButton("STOP");
         stop.addActionListener(this);
-
-        this.setLayout(null);
 
         add(start);
         add(stop);
