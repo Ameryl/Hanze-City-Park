@@ -16,7 +16,7 @@ public class infoView extends AbstractView {
 
     }
     public void paintComponent(Graphics g) {
-        Labeltje = new JLabel();
+        this.Labeltje = new JLabel();
         Labeltje.setText("DIT IS HET ENIGE WAT IN DIE KUT VIEW GEZIEN MOET WORDEN");
         add(Labeltje);
     }
