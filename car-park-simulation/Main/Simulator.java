@@ -37,7 +37,7 @@ public class Simulator {
         infoView = new infoView(simModel);
 
         frame = new JFrame("Car Park Simulation");
-        frame.setSize(1100, 1000);
+        frame.setSize(1100, 500);
         frame.setResizable(true);
         frame.setLayout(null);
 
@@ -50,8 +50,8 @@ public class Simulator {
         SimulatorController.setBorder(blackline);
 
         SimulatorView.setBounds(10,10,800,400);
-        infoView.setBounds(10,500,800,400);
-        SimulatorController.setBounds(850,200,200,200);
+        infoView.setBounds(850,50,200,100);
+        SimulatorController.setBounds(850,200,200,100);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

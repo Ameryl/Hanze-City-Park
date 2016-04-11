@@ -228,6 +228,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return car;
     }
 
+
         public Location getFirstFreeLocation() {
         for (int floor = typeCar; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {

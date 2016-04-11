@@ -1,6 +1,5 @@
 package View;
 
-import Logic.AbstractModel;
 import Logic.SimulatorModel;
 
 import javax.swing.*;
@@ -9,12 +8,13 @@ import javax.swing.*;
  * Created by Cyriel on 11-4-2016.
  */
 public class infoView extends AbstractView {
-    private JLabel Labeltje;
+    private static JLabel omzetCount;
 
     public infoView(SimulatorModel sim) {
         super(sim);
-        this.Labeltje = new JLabel();
-        Labeltje.setText("DIT IS HET ENIGE WAT IN DIE KUT VIEW GEZIEN MOET WORDEN");
-        add(Labeltje);
+        omzetCount = new JLabel("Omzet : 0€");
+        add(omzetCount);
     }
+
+
 }
