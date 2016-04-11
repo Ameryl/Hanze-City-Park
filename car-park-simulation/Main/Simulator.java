@@ -28,7 +28,7 @@ public class Simulator {
         SimulatorController = new SimulatorController(simModel);
         SimulatorView = new SimulatorView(simModel);
 
-        frame = new JFrame("Car Park Simulator");
+        frame = new JFrame("Car Park Simulation");
         frame.setSize(1100, 500);
         frame.setResizable(false);
         frame.setLayout(null);
