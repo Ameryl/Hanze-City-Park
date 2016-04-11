@@ -15,7 +15,7 @@ public  class SimulatorController {
     private SimulatorModel model;
     private Thread thread;
     private boolean isRunning = false;
-
+    private int steps = 0;
     public SimulatorController(SimulatorView view, SimulatorModel model) {
         this.view = view;
         this.model = model;
@@ -51,6 +51,8 @@ public  class SimulatorController {
         public void actionPerformed(ActionEvent arg0) {
             try {
                 //ToDO aantal stappen toevoegen.
+                steps++;
+                view.setStepCounterValue(steps);
             }
 
             catch(Exception e) {
@@ -64,6 +66,8 @@ public  class SimulatorController {
         public void actionPerformed(ActionEvent arg0) {
             try {
                 //ToDO aantal stappen verminderen.
+                steps--;
+                view.setStepCounterValue(steps);
             }
 
             catch(Exception e) {
@@ -78,6 +82,7 @@ public  class SimulatorController {
             try {
                 if(isRunning == false) {
                     tick();
+
                     isRunning = true;
                 } else {
                     showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
@@ -138,8 +143,9 @@ public  class SimulatorController {
     public void run(final int stepcount) {
         thread = new Thread() {
             public void run() {
+                steps = stepcount;
                 while (isRunning) {
-                    for (int i = 0; i < stepcount; i++) {
+                    for (int i = 0; i < steps; i++) {
                         tick();
                     }
                 }
@@ -260,5 +266,8 @@ public  class SimulatorController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        steps--;
+        view.setStepCounterValue(steps);
     }
 }
