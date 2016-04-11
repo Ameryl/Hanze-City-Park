@@ -26,11 +26,13 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private int omzet = 0;
 
     private int tickPause = 100;
+    private int typeCar = 0;
 
-    int weekDayArrivals = 50; // average number of arriving cars per hour
-    int weekendArrivals = 90; // average number of arriving cars per hour
 
-    int enterSpeed = 3; // number of cars that can enter per minute
+    int weekDayArrivals = 200; // average number of arriving cars per hour
+    int weekendArrivals = 300; // average number of arriving cars per hour
+
+    int enterSpeed = 9; // number of cars that can enter per minute
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
@@ -95,15 +97,18 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (random.nextInt(10) < parkPassChance) {
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
+
             }
                 else if(random.nextInt(10) < Reservationchance) {
                     Car car = new ReservationCar();
                     entranceCarQueue.addCar(car);
+
                 }
 
              else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
+
             }
 
         }
@@ -111,6 +116,15 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         // Remove car from the front of the queue and assign to a parking space.
         for (int i = 0; i < enterSpeed; i++) {
             Car car = entranceCarQueue.removeCar();
+            if (car instanceof ReservationCar){
+                typeCar = 0;
+            }
+            else if (car instanceof ParkPassCar){
+                typeCar = 0;
+            }
+            else {
+                typeCar = 2;
+            }
             if (car == null) {
                 break;
             }
@@ -141,7 +155,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 exitCarQueue.addCar(car);
             }
             else if(car instanceof ReservationCar) {
-                removeCarAt(car.getLocation());
+                removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
             }
         }
@@ -218,8 +232,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return car;
     }
 
-    public Location getFirstFreeLocation() {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+        public Location getFirstFreeLocation() {
+        for (int floor = typeCar; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
@@ -230,6 +244,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             }
         }
         return null;
+
     }
 
     public Car getFirstLeavingCar() {
