@@ -29,7 +29,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     private int tickPause = 100;
     private int typeCar = 0;
-    private int typeCarRow = 0;
 
 
     int weekDayArrivals = 200; // average number of arriving cars per hour
@@ -97,23 +96,23 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
                 aantalCars++;
-                currentCars++;
+
             }
                 else if(random.nextInt(10) < Reservationchance) {
                     Car car = new ReservationCar();
                     entranceCarQueue.addCar(car);
                 aantalCars++;
-                currentCars++;
+
                 }
 
              else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
                 aantalCars++;
-                currentCars++;
+
             }
             infoView.setCarCount(aantalCars);
-            infoView.setCurrentCarCount(currentCars);
+
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -121,17 +120,16 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             Car car = entranceCarQueue.removeCar();
             if (car instanceof ReservationCar){
                 typeCar = 0;
-                typeCarRow = 0;
+
 
             }
             else if (car instanceof ParkPassCar){
                 typeCar = 0;
-                typeCarRow = 0;
+
 
             }
             else {
-                typeCar = 1;
-                typeCarRow = 2;
+                typeCar = 2;
 
             }
             if (car == null) {
@@ -194,12 +192,12 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         // Let cars leave.
         for (int i = 0; i < exitSpeed; i++) {
             Car car = exitCarQueue.removeCar();
-            currentCars--;
+
             if (car == null) {
                 break;
             }
             // Bye!
-            infoView.setCurrentCarCount(currentCars);
+
         }
 
         // Update the car park view.
@@ -233,6 +231,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         if (oldCar == null) {
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
+            currentCars++;
+            infoView.setCurrentCarCount(currentCars);
             return true;
         }
         return false;
@@ -248,6 +248,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         }
         cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
         car.setLocation(null);
+        currentCars--;
+        infoView.setCurrentCarCount(currentCars);
 
         return car;
     }
@@ -255,7 +257,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
         public Location getFirstFreeLocation() {
         for (int floor = typeCar; floor < getNumberOfFloors(); floor++) {
-            for (int row = typeCarRow; row < getNumberOfRows(); row++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
                     if (getCarAt(location) == null) {
