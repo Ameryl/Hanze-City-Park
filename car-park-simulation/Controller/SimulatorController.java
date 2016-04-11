@@ -27,7 +27,7 @@ public  class SimulatorController {
         this.view.addStopSimListener(new StopSimListener());
         this.view.addPlusSimListener(new PlusListener());
         this.view.addMinusSimListener(new MinusListener());
-}
+    }
 
     class RunListener implements ActionListener {
 
@@ -189,7 +189,12 @@ public  class SimulatorController {
                 Car car = new ParkPassCar();
                 model.addEntranceCarQueue(car);
             }
-            else {
+
+            else if(random.nextInt(10) < model.getReservationChance()) {
+                Car car = new ReservationCar();
+                model.addEntranceCarQueue(car);
+            }
+            else  {
                 Car car = new AdHocCar();
                 model.addEntranceCarQueue(car);
             }
@@ -230,6 +235,10 @@ public  class SimulatorController {
             }
 
             else if(car instanceof ParkPassCar) {
+                view.removeCarAt(car.getLocation());
+                model.addExitCarQueue(car);
+            }
+            else if(car instanceof ReservationCar) {
                 view.removeCarAt(car.getLocation());
                 model.addExitCarQueue(car);
             }

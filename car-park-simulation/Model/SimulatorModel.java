@@ -22,6 +22,7 @@ public class SimulatorModel {
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
+    int reservationChance = 2;
 
     public SimulatorModel() {
         entranceCarQueue = new CarQueue();
@@ -52,6 +53,8 @@ public class SimulatorModel {
     public int getParkPassChance() {
         return parkPassChance;
     }
+
+    public int getReservationChance() {return reservationChance;}
 
     public int getTickPause() {
         return tickPause;

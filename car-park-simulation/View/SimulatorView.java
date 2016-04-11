@@ -262,6 +262,10 @@ public class SimulatorView extends JFrame  {
                             Color color = car == null ? Color.white : Color.green;
                             drawPlace(graphics, location, color);
                         }
+                        else if(car instanceof ReservationCar) {
+                            Color color = car == null ? Color.white : Color.BLUE;
+                            drawPlace(graphics, location, color);
+                        }
 
                         else {
                             Color color = car == null ? Color.white : Color.green;

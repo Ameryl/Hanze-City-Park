@@ -37,6 +37,7 @@ public class Simulator {
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
+    int Reservationchance = 2; // chance of a car having a reservation instead of a normal customer
 
     /**
      * Constructor for the simulation
@@ -95,6 +96,11 @@ public class Simulator {
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
             }
+
+            else if(random.nextInt(10) < Reservationchance) {
+                Car car = new ReservationCar();
+                entranceCarQueue.addCar(car);
+            }
             else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
@@ -135,6 +141,10 @@ public class Simulator {
 
             else if(car instanceof ParkPassCar) {
                 simulatorView.removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
+                exitCarQueue.addCar(car);
+            }
+            else if(car instanceof ReservationCar) {
+                simulatorView.removeCarAt(car.getLocation());
                 exitCarQueue.addCar(car);
             }
         }
