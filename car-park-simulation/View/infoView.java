@@ -55,6 +55,6 @@ public class infoView extends AbstractView {
 
         }
     }
-
+//HENK IS DIK!
 
 }
