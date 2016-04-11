@@ -14,9 +14,9 @@ public class infoView extends AbstractView {
 
     public infoView(SimulatorModel sim) {
         super(sim);
-        omzetCount = new JLabel("Omzet : 0€");
-        carCount = new JLabel("Aantal bezochte auto's: 0");
-        currentCount = new JLabel("aantal huidige auto's: 0");
+        omzetCount = new JLabel("Revenue : 0€");
+        carCount = new JLabel("Cars visited: 0");
+        currentCount = new JLabel("Amount current cars: 0");
 
 
 
@@ -37,7 +37,7 @@ public class infoView extends AbstractView {
 
     public static void setCarCount(int aantalCars) {
         try {
-            carCount.setText("Total amount of cars: " + aantalCars);
+            carCount.setText("Cars visited: " + aantalCars);
         }
 
         catch (Exception ex) {
