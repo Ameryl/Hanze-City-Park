@@ -5,7 +5,8 @@ import Logic.SimulatorModel;
 import javax.swing.*;
 
 /**
- * Created by Cyriel on 11-4-2016.
+ * This class creates a new info view.
+ * In te view itself there will be several JLables which provide some text base information.
  */
 public class infoView extends AbstractView {
     private static JLabel revenueCount;
@@ -13,6 +14,10 @@ public class infoView extends AbstractView {
     private static JLabel currentCount;
     private static JLabel currentTime;
 
+    /**
+     * The constructor for the infoview.
+     * @param sim
+     */
     public infoView(SimulatorModel sim) {
         super(sim);
         revenueCount = new JLabel("Revenue : "+ sim.getRevenue() + "€");
@@ -37,6 +42,10 @@ public class infoView extends AbstractView {
         add(currentCount);
     }
     @Override
+    /**
+     * This method will  update the whole view.
+     * which means it sets the text on the lables.
+     */
     public void updateView() {
         SimulatorModel sim = (SimulatorModel) super.sim;
         revenueCount.setText("Revenue : "+ sim.getRevenue() + "€");

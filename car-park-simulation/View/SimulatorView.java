@@ -4,17 +4,29 @@ import java.awt.*;
 
 import Logic.*;
 
-
+/**
+ * This class provides the simulatorview.
+ * What is does is that it makes the whole gui appear.
+ */
 public class SimulatorView extends AbstractView {
 
     private Image carParkImage;
     private Dimension size;
 
+    /**
+     * The constructor of the SimulatorView.
+     * @param sim
+     */
     public SimulatorView(SimulatorModel sim) {
         super(sim);
         size = new Dimension();
     }
 
+    /**
+     * Generates the carspaces,the floors and rows.
+     * It also sets the color of the different cars.
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         g.drawImage(carParkImage, 0, 0, null);
         SimulatorModel sim = (SimulatorModel) super.sim;
@@ -46,8 +58,15 @@ public class SimulatorView extends AbstractView {
             }
         }
     }
-        // Create a new car park image if the size has changed.
 
+
+    /**
+     * Create a new car park image if the size has changed.
+     * Which will never happens because you cant resize it.
+     * @param graphics
+     * @param location
+     * @param color
+     */
     private void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
         graphics.fillRect(
