@@ -1,7 +1,10 @@
 package Runner;
 
 import Main.Simulator;
-//nice
+
+/**
+ * This class is responsible for running te whole application.
+ */
 public class SimulatorRunner{
     public static void main(String[]args)
     {

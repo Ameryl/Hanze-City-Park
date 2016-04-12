@@ -1,3 +1,6 @@
+package View;
+import View.AbstractView;
+
 import java.awt.*;
 import java.awt.image.*;
 import javax.swing.*;
@@ -11,7 +14,7 @@ import java.util.*;
  * @author Michael Kölling and David J. Barnes
  * @version 2011.07.31
  */
-public class GraphView implements SimulatorView
+public class GraphView extends AbstractView
 {
     private static final Color LIGHT_GRAY = new Color(0, 0, 0, 40);
 
@@ -25,7 +28,7 @@ public class GraphView implements SimulatorView
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
-    private FieldStats stats;
+    private  FieldStats stats;
 
     /**
      * Constructor.
