@@ -17,7 +17,7 @@ public class SimulatorView extends AbstractView {
 
     public void paintComponent(Graphics g) {
         g.drawImage(carParkImage, 0, 0, null);
-        SimulatorModel sim = (SimulatorModel) super.sim;
+        SimulatorModel sim = getModel();
 
         size = getSize();
         carParkImage = createImage(size.width, size.height);

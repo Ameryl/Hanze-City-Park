@@ -13,6 +13,7 @@ public class infoView extends AbstractView {
     private static JLabel currentCount;
     private static JLabel currentTime;
 
+
     public infoView(SimulatorModel sim) {
         super(sim);
         revenueCount = new JLabel("Revenue : "+ sim.getRevenue() + "€");
@@ -35,13 +36,14 @@ public class infoView extends AbstractView {
         add(revenueCount);
         add(carCount);
         add(currentCount);
+
     }
     @Override
     public void updateView() {
-        SimulatorModel sim = (SimulatorModel) super.sim;
         revenueCount.setText("Revenue : "+ sim.getRevenue() + "€");
         carCount.setText("Cars visited: " + sim.getAmountOfCars());
         currentCount.setText("Amount of current cars: " + sim.getCurrentCars());
         currentTime.setText("Time : " + sim.getHour() + ":" + sim.getMinute());
+
     }
 }

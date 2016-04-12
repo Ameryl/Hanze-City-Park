@@ -1,21 +1,35 @@
-package nl.hanze.t12.mvc;
+package View;
+import Logic.SimulatorModel;
 
 import java.awt.*;
 
-@SuppressWarnings("serial")
-public class PieView extends View {
+public class PieView extends AbstractView {
 
-	public PieView(Model model) {
-		super(model);
-	}
+    public PieView(SimulatorModel sim) {
+        super(sim);
+    }
 
-	public void paintComponent(Graphics g) {
-		int aantal=getModel().getAantal();
+    public void paintComponent(Graphics g) {
+        int typeofcar = getModel().getTypeCar();
 
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 200, 200);
-		g.setColor(Color.BLUE);
-		
-		g.fillArc(10, 10, 180, 180, 0, aantal);
-	}	
+        int amount = getModel().getAmountOfCars();
+        int amountpercentage = amount / 3;
+
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, 200, 200);
+
+        if (typeofcar == 0) {
+            // Reservation Car BLUE
+
+            g.setColor(Color.BLUE);
+        } else if (typeofcar == 1) {
+            // Park Pass car GREEN
+            g.setColor(Color.GREEN);
+        } else if (typeofcar == 2) {
+            // Regular car RED
+            g.setColor(Color.RED);
+        }
+        g.fillArc(10, 10, 180, 180, 0, amountpercentage);
+    }
+
 }

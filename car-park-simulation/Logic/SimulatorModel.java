@@ -1,8 +1,5 @@
 package Logic;
 
-
-import View.*;
-
 import java.util.Random;
 
 public class SimulatorModel extends AbstractModel implements Runnable{
@@ -29,6 +26,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     private int tickPause = 100;
     private int typeCar = 0;
+    private int typecarFloor = 0;
 
 
     int weekDayArrivals = 200; // average number of arriving cars per hour
@@ -118,24 +116,24 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         // Remove car from the front of the queue and assign to a parking space.
         for (int i = 0; i < enterSpeed; i++) {
             Car car = entranceCarQueue.removeCar();
+
             if (car instanceof ReservationCar){
                 typeCar = 0;
-
-
+                typecarFloor = 0;
             }
             else if (car instanceof ParkPassCar){
-                typeCar = 0;
-
-
+                typeCar = 1;
+                typecarFloor = 0;
             }
-            else {
+            else if (car instanceof Car){
                 typeCar = 2;
-
+                typecarFloor = 2;
             }
             if (car == null) {
                 break;
             }
             notifyViews();
+
             // Find a space for this car.
             Location freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
@@ -143,6 +141,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
+
         }
 
         // Perform car park tick.
@@ -195,13 +194,12 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car == null) {
                 break;
             }
-            notifyViews();
             // Bye!
 
         }
 
         // Update the car park view.
-         notifyViews();
+        notifyViews();
 
         // Pause.
         try {
@@ -254,7 +252,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
 
         public Location getFirstFreeLocation() {
-        for (int floor = typeCar; floor < getNumberOfFloors(); floor++) {
+
+        for (int floor = typecarFloor; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
@@ -337,6 +336,10 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     public int getCurrentCars() {
         return currentCars;
+    }
+
+    public int getTypeCar() {
+        return typeCar;
     }
 
     public int getPaymentSpeed() {
