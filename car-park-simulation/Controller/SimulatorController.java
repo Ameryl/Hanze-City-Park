@@ -46,8 +46,7 @@ public class SimulatorController extends AbstractController implements ActionLis
         add(onestep);
         add(onehunderdsteps);
 
-        // REMINDER : DE LAYOUT AANPASSEN IS WERK VOOR NIEK
-        // - Cyriel
+
 
         this.setLayout(null);
 
@@ -96,6 +95,7 @@ public class SimulatorController extends AbstractController implements ActionLis
     public void oneHunderdSteps() {
 
     }
+
 
     @Override
     /**
