@@ -8,52 +8,40 @@ import javax.swing.*;
  * Created by Cyriel on 11-4-2016.
  */
 public class infoView extends AbstractView {
-    private static JLabel omzetCount;
+    private static JLabel revenueCount;
     private static JLabel carCount;
     private static JLabel currentCount;
+    private static JLabel currentTime;
 
     public infoView(SimulatorModel sim) {
         super(sim);
-        omzetCount = new JLabel("Revenue : 0€");
-        carCount = new JLabel("Cars visited: 0");
-        currentCount = new JLabel("Amount current cars: 0");
+        revenueCount = new JLabel("Revenue : "+ sim.getRevenue() + "€");
+        carCount = new JLabel("Cars visited: " + sim.getAmountOfCars());
+        currentCount = new JLabel("Amount of current cars: " + sim.getCurrentCars());
+        currentTime = new JLabel("Time : " + sim.getHour() + ":" + sim.getMinute());
 
 
+        // REMINDER : DE LAYOUT AANPASSEN IS WERK VOOR NIEK
+        // - Cyriel
 
-        add(omzetCount);
+        /*
+        this.setLayout(null);
+        currentTime.setBounds(50, 50 , 50, 50);
+        revenueCount.setBounds(50, 50 , 50, 50);
+        currentCount.setBounds(50, 50 , 50, 50);
+        carCount.setBounds(50, 50 , 50, 50);
+        */
+        add(currentTime);
+        add(revenueCount);
         add(carCount);
         add(currentCount);
     }
-
-    public static void setOmzetCount(int omzet) {
-        try {
-            omzetCount.setText("Revenue: " + omzet + "€");
-        }
-
-        catch (Exception ex) {
-
-        }
+    @Override
+    public void updateView() {
+        SimulatorModel sim = (SimulatorModel) super.sim;
+        revenueCount.setText("Revenue : "+ sim.getRevenue() + "€");
+        carCount.setText("Cars visited: " + sim.getAmountOfCars());
+        currentCount.setText("Amount of current cars: " + sim.getCurrentCars());
+        currentTime.setText("Time : " + sim.getHour() + ":" + sim.getMinute());
     }
-
-    public static void setCarCount(int aantalCars) {
-        try {
-            carCount.setText("Cars visited: " + aantalCars);
-        }
-
-        catch (Exception ex) {
-
-        }
-    }
-
-    public static void setCurrentCarCount(int currentCars) {
-        try {
-            currentCount.setText("Amount current cars: " + currentCars);
-        }
-
-        catch (Exception ex) {
-
-        }
-    }
-
-
 }

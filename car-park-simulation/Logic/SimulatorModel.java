@@ -23,8 +23,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private int hour = 0;
     private int minute = 0;
 
-    private int omzet = 0;
-    private int aantalCars = 0;
+    private int revenue = 0;
+    private int amountOfCars = 0;
     private int currentCars =0;
 
     private int tickPause = 100;
@@ -96,23 +96,22 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (random.nextInt(10) < parkPassChance) {
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
-                aantalCars++;
+                amountOfCars++;
 
             }
                 else if(random.nextInt(10) < Reservationchance) {
                     Car car = new ReservationCar();
                     entranceCarQueue.addCar(car);
-                aantalCars++;
+                amountOfCars++;
 
                 }
 
              else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
-                aantalCars++;
+                amountOfCars++;
 
             }
-            infoView.setCarCount(aantalCars);
 
         }
 
@@ -136,7 +135,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car == null) {
                 break;
             }
-            infoView.setCarCount(aantalCars);
+            notifyViews();
             // Find a space for this car.
             Location freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
@@ -181,8 +180,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
                 break;
             }
             // TODO Handle payment.
-            omzet += 5;
-            infoView.setOmzetCount(omzet);
+            revenue += 5;
 
             removeCarAt(car.getLocation());
 
@@ -197,6 +195,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car == null) {
                 break;
             }
+            notifyViews();
             // Bye!
 
         }
@@ -233,7 +232,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
             currentCars++;
-            infoView.setCurrentCarCount(currentCars);
             return true;
         }
         return false;
@@ -250,7 +248,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
         car.setLocation(null);
         currentCars--;
-        infoView.setCurrentCarCount(currentCars);
 
         return car;
     }
@@ -328,6 +325,18 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     public int getEnterSpeed() {
         return enterSpeed;
+    }
+
+    public int getRevenue() {
+        return revenue;
+    }
+
+    public int getAmountOfCars() {
+        return amountOfCars;
+    }
+
+    public int getCurrentCars() {
+        return currentCars;
     }
 
     public int getPaymentSpeed() {

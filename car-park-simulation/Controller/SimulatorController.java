@@ -11,10 +11,14 @@ public class SimulatorController extends AbstractController implements ActionLis
     private JButton stop;
     private JButton onestep;
     private JButton onehunderdsteps;
+    private JLabel title;
 
 
     public SimulatorController(SimulatorModel sim) {
         super(sim);
+
+        title = new JLabel();
+        title.setText("Simulatie controls");
 
         start = new JButton("Start");
         start.addActionListener(this);
@@ -28,18 +32,25 @@ public class SimulatorController extends AbstractController implements ActionLis
         onehunderdsteps = new JButton("100 Steps");
         onehunderdsteps.addActionListener(this);
 
+        add(title);
         add(start);
         add(stop);
         add(onestep);
         add(onehunderdsteps);
 
+        // REMINDER : DE LAYOUT AANPASSEN IS WERK VOOR NIEK
+        // - Cyriel
 
-        stop.setBounds(10, 10, 150, 30);
-        start.setBounds(10, 70, 150, 30);
+        this.setLayout(null);
 
-        onestep.setBounds(10, 20, 150, 30);
-        onehunderdsteps.setBounds(10, 20, 150, 30);
+        title.setBounds(50, -40, 150, 100);
 
+        stop.setBounds(100, 20, 95, 30);
+        start.setBounds(5, 20, 95, 30);
+
+
+        onestep.setBounds(5, 65, 95, 30);
+        onehunderdsteps.setBounds(100, 65, 95, 30);
         setVisible(true);
     }
 
@@ -54,13 +65,11 @@ public class SimulatorController extends AbstractController implements ActionLis
     }
 
     public void oneStep() {
-        for (int i = 0; i < 1; i++) {
             sim.tick();
-        }
     }
 
     public void oneHunderdSteps() {
-    // DUNNO LOL ?
+        JOptionPane.showMessageDialog(null, "ik ben niek ik heb deze methode nog niet geïmplementeerd");
     }
 
     @Override
