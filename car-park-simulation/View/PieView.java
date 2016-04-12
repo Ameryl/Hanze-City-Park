@@ -15,7 +15,7 @@ public class PieView extends View {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 200, 200);
 		g.setColor(Color.BLUE);
-		
+
 		g.fillArc(10, 10, 180, 180, 0, aantal);
-	}	
+	}
 }

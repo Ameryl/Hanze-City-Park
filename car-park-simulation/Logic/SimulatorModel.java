@@ -7,9 +7,9 @@ import java.util.Random;
 
 public class SimulatorModel extends AbstractModel implements Runnable{
 
-    private static int numberOfFloors;
-    private static int numberOfRows;
-    private static int numberOfPlaces;
+    private static int numberOfFloors; //Amount of floors
+    private static int numberOfRows;   // Amount of Rows
+    private static int numberOfPlaces; // Amount of Places
 
     public boolean run;
 
@@ -19,9 +19,13 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
 
+    //Time intervals
+
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
+
+    //Informations stats
 
     private int revenue = 0;
     private int amountOfCars = 0;
@@ -40,6 +44,13 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
     int Reservationchance = 2; // chance of a car having a reservation instead of a normal customer
 
+
+    /**
+     *
+     * @param numberOfFloors Amount of floors
+     * @param numberOfRows Amount of Rows
+     * @param numberOfPlaces Amount of Places
+     */
     public SimulatorModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
@@ -52,11 +63,18 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
     }
 
+
+    /**
+     * Start a thread
+     */
     public void start()
     {
         new Thread(this).start();
     }
 
+    /**
+     * Run the Sim
+     */
     public void run() {
       run = true;
         while(run){
@@ -211,18 +229,36 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         }
     }
 
+    /**
+     *  Give the amount of floors
+     * @return Amount of floors
+     */
     public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
+    /**
+     * Give the amount of Rows
+     * @return Amount of Rows
+     */
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
+    /**
+     * Give the amount of Places
+     * @return Amount of Places
+     */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
+    /**
+     * Set the car at a location
+     * @param location The location
+     * @param car The car object
+     * @return Boolean true/false
+     */
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
@@ -237,6 +273,11 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return false;
     }
 
+    /**
+     * Remove a car at a location
+     * @param location The Location
+     * @return Returns the car
+     */
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -252,8 +293,11 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return car;
     }
 
-
-        public Location getFirstFreeLocation() {
+    /**
+     * Get the first free location
+     * @return The first free location
+     */
+    public Location getFirstFreeLocation() {
         for (int floor = typeCar; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -268,6 +312,10 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     }
 
+    /**
+     * Get the first leaving car
+     * @return car object
+     */
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -283,6 +331,9 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return null;
     }
 
+    /**
+     * Ticks.
+     */
     private void ticker() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
@@ -298,6 +349,11 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             }
         }
 
+    /**
+     * Check if a location is valid
+     * @param location The location
+     * @return Boolean if location is valid
+     */
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
@@ -308,6 +364,11 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return true;
     }
 
+    /**
+     * Get the car from a specific location
+     * @param location The location
+     * @return The car at the specific location
+     */
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;

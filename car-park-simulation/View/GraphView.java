@@ -5,9 +5,9 @@ import java.util.*;
 
 /**
  * The GraphView provides a view of two populations of actors in the field as a line graph
- * over time. In its current version, it can only plot exactly two different classes of 
+ * over time. In its current version, it can only plot exactly two different classes of
  * animals. If further animals are introduced, they will not currently be displayed.
- * 
+ *
  * @author Michael Kölling and David J. Barnes
  * @version 2011.07.31
  */
@@ -29,7 +29,7 @@ public class GraphView implements SimulatorView
 
     /**
      * Constructor.
-     * 
+     *
      * @param width The width of the plotter window (in pixles).
      * @param height The height of the plotter window (in pixles).
      * @param startMax The initial maximum value for the y axis.
@@ -69,7 +69,7 @@ public class GraphView implements SimulatorView
      * two classes in the field. This view currently does not work for more (or fewer) than exactly
      * two classes. If the field contains more than two different types of animal, only two of the classes
      * will be plotted.
-     * 
+     *
      * @param step Which iteration step it is.
      * @param field The field whose status is to be displayed.
      */
@@ -94,7 +94,7 @@ public class GraphView implements SimulatorView
     {
         graph.newRun();
     }
-    
+
     /**
      * Prepare the frame for the graph display.
      */
@@ -159,7 +159,7 @@ public class GraphView implements SimulatorView
             int width = graphImage.getWidth();
 
             Graphics g = graphImage.getGraphics();
-            g.copyArea(4, 0, width-4, height, -4, 0);            
+            g.copyArea(4, 0, width-4, height, -4, 0);
             g.setColor(Color.BLACK);
             g.drawLine(width-4, 0, width-4, height);
             g.drawLine(width-2, 0, width-2, height);
@@ -229,7 +229,7 @@ public class GraphView implements SimulatorView
             int height = graphImage.getHeight();
             int width = graphImage.getWidth();
 
-            BufferedImage tmpImage = new BufferedImage(width, (int)(height*SCALE_FACTOR), 
+            BufferedImage tmpImage = new BufferedImage(width, (int)(height*SCALE_FACTOR),
                                                        BufferedImage.TYPE_INT_RGB);
             Graphics2D gtmp = (Graphics2D) tmpImage.getGraphics();
 
@@ -275,7 +275,7 @@ public class GraphView implements SimulatorView
          * Tell the layout manager how big we would like to be.
          * (This method gets called by layout managers for placing
          * the components.)
-         * 
+         *
          * @return The preferred dimension for this component.
          */
         public Dimension getPreferredSize()
@@ -292,10 +292,10 @@ public class GraphView implements SimulatorView
         }
 
         /**
-         * This component needs to be redisplayed. Copy the internal image 
-         * to screen. (This method gets called by the Swing screen painter 
+         * This component needs to be redisplayed. Copy the internal image
+         * to screen. (This method gets called by the Swing screen painter
          * every time it want this component displayed.)
-         * 
+         *
          * @param g The graphics context that can be used to draw on this component.
          */
         public void paintComponent(Graphics g)

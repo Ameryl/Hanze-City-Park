@@ -23,7 +23,7 @@ public class infoView extends AbstractView {
 
         // REMINDER : DE LAYOUT AANPASSEN IS WERK VOOR NIEK
         // - Cyriel
-
+        // DANKJEWEL CYRIEL
         /*
         this.setLayout(null);
         currentTime.setBounds(50, 50 , 50, 50);

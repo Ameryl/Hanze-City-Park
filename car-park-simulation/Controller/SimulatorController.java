@@ -69,7 +69,7 @@ public class SimulatorController extends AbstractController implements ActionLis
     }
 
     public void oneHunderdSteps() {
-        JOptionPane.showMessageDialog(null, "ik ben niek ik heb deze methode nog niet geïmplementeerd");
+
     }
 
     @Override
