@@ -8,6 +8,7 @@ package Main; /**
 import Controller.*;
 import View.*;
 import Logic.*;
+import View.PieView;
 
 import javax.swing.*;
 import javax.swing.border.Border;
