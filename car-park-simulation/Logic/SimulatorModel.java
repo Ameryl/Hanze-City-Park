@@ -36,12 +36,12 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private int typecarFloor = 0;
 
 
-    int weekDayArrivals = 2000; // average number of arriving cars per hour
-    int weekendArrivals = 300; // average number of arriving cars per hour
+    int weekDayArrivals = 2000; // average number of arriving cars per hour DEFAULT: 50
+    int weekendArrivals = 300; // average number of arriving cars per hour DEFAULT: 90
 
-    int enterSpeed = 9; // number of cars that can enter per minute
-    int paymentSpeed = 10; // number of cars that can pay per minute
-    int exitSpeed = 9; // number of cars that can leave per minute
+    int enterSpeed = 15; // number of cars that can enter per minute DEFAULT: 3
+    int paymentSpeed = 15; // number of cars that can pay per minute EDFAULT : 10
+    int exitSpeed = 15; // number of cars that can leave per minute DEFAULT: 9
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
     int Reservationchance = 1; // chance of a car having a reservation instead of a normal customer
 
