@@ -1,8 +1,11 @@
+package View;
+import View.AbstractView;
+
 import java.awt.*;
 import java.awt.image.*;
 import javax.swing.*;
 import java.util.*;
-/**
+
 /**
  * The GraphView provides a view of two populations of actors in the field as a line graph
  * over time. In its current version, it can only plot exactly two different classes of
@@ -11,8 +14,7 @@ import java.util.*;
  * @author Michael Kölling and David J. Barnes
  * @version 2011.07.31
  */
-
-public class GraphView implements SimulatorView
+public class GraphView extends AbstractView
 {
     private static final Color LIGHT_GRAY = new Color(0, 0, 0, 40);
 
@@ -26,7 +28,7 @@ public class GraphView implements SimulatorView
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
-    private FieldStats stats;
+    private  FieldStats stats;
 
     /**
      * Constructor.
@@ -38,7 +40,6 @@ public class GraphView implements SimulatorView
      * @param class1 The first class to be plotted.
      * @param width The second class to be plotted.
      */
-/*
     public GraphView(int width, int height, int startMax)
     {
         stats = new FieldStats();
@@ -309,5 +310,4 @@ public class GraphView implements SimulatorView
             }
         }
     }
-    /**
 }

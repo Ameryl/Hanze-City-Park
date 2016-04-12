@@ -5,6 +5,6 @@ public class ParkPass {
 
 
     public ParkPass() {
-
+    //Do nothing
     }
 }

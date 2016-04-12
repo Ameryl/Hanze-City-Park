@@ -6,6 +6,9 @@ import java.awt.event.*;
 import Logic.SimulatorModel;
 import javax.swing.*;
 
+/**
+ * This class is responsible for making the buttons functional
+ */
 public class SimulatorController extends AbstractController implements ActionListener {
     private JButton start;
     private JButton stop;
@@ -13,7 +16,10 @@ public class SimulatorController extends AbstractController implements ActionLis
     private JButton onehunderdsteps;
     private JLabel title;
 
-
+    /**
+     * In the constructor we create several buttons with different function.
+     * @param sim
+     */
     public SimulatorController(SimulatorModel sim) {
         super(sim);
 
@@ -54,25 +60,38 @@ public class SimulatorController extends AbstractController implements ActionLis
         setVisible(true);
     }
 
-
+    /**
+     * Starts the sim.
+     */
     public void start() {
         sim.start();
     }
 
-
+    /**
+     * Pauses the simulator.
+     */
     public void stop() {
         sim.run = false;
     }
 
+    /**
+     * Runs the simulator just for one step.
+     */
     public void oneStep() {
             sim.tick();
     }
 
+    /**
+     * Runs the simulator for steps.
+     */
     public void oneHunderdSteps() {
-        JOptionPane.showMessageDialog(null, "ik ben niek ik heb deze methode nog niet geïmplementeerd");
+
     }
 
     @Override
+    /**
+     * Creates the ActionEvents of the JButtons.
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==start) {
             start();

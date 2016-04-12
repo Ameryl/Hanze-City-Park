@@ -16,7 +16,7 @@ import java.awt.*;
 
 public class Simulator {
     /**
-     * Constructor for the simulati
+     * Constructor for the simulator
      */
     private JFrame frame;
     private AbstractView SimulatorView;
