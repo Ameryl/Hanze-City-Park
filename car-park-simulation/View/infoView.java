@@ -48,7 +48,7 @@ public class infoView extends AbstractView {
         SimulatorModel sim = (SimulatorModel) super.sim;
         revenueCount.setText("Revenue : "+ sim.getRevenue() + "€");
         carCount.setText("Cars visited: " + sim.getAmountOfCars());
-        currentCount.setText("Amount of current cars: " + sim.getCurrentCars());
+        currentCount.setText("Amount of current cars: " + sim.getCurrentCars() + " / " + sim.getTotalSpots());
         currentTime.setText("Time : " + sim.getHour() + ":" + sim.getMinute());
     }
 }

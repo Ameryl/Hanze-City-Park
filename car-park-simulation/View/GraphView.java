@@ -1,4 +1,5 @@
 package View;
+
 import View.AbstractView;
 
 import java.awt.*;
@@ -8,13 +9,13 @@ import java.util.*;
 
 /**
  * The GraphView provides a view of two populations of actors in the field as a line graph
- * over time. In its current version, it can only plot exactly two different classes of
+ * over time. In its current version, it can only plot exactly two different classes of 
  * animals. If further animals are introduced, they will not currently be displayed.
- *
+ * 
  * @author Michael Kölling and David J. Barnes
  * @version 2011.07.31
  */
-public class GraphView extends AbstractView
+public class GraphView
 {
     private static final Color LIGHT_GRAY = new Color(0, 0, 0, 40);
 
@@ -28,21 +29,17 @@ public class GraphView extends AbstractView
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
-    private  FieldStats stats;
 
     /**
      * Constructor.
-     *
+     * 
      * @param width The width of the plotter window (in pixles).
      * @param height The height of the plotter window (in pixles).
      * @param startMax The initial maximum value for the y axis.
-     * @param world The world object.
-     * @param class1 The first class to be plotted.
      * @param width The second class to be plotted.
      */
     public GraphView(int width, int height, int startMax)
     {
-        stats = new FieldStats();
         classes = new HashSet<Class>();
         colors = new HashMap<Class, Color>();
 
@@ -67,28 +64,6 @@ public class GraphView extends AbstractView
         classes = colors.keySet();
     }
 
-    /**
-     * Show the current status of the field. The status is shown by displaying a line graph for
-     * two classes in the field. This view currently does not work for more (or fewer) than exactly
-     * two classes. If the field contains more than two different types of animal, only two of the classes
-     * will be plotted.
-     *
-     * @param step Which iteration step it is.
-     * @param field The field whose status is to be displayed.
-     */
-    public void showStatus(int step, Field field)
-    {
-        graph.update(step, field, stats);
-    }
-
-    /**
-     * Determine whether the simulation should continue to run.
-     * @return true If there is more than one species alive.
-     */
-    public boolean isViable(Field field)
-    {
-        return stats.isViable(field);
-    }
 
     /**
      * Prepare for a new run.
@@ -97,7 +72,7 @@ public class GraphView extends AbstractView
     {
         graph.newRun();
     }
-
+    
     /**
      * Prepare the frame for the graph display.
      */
@@ -162,7 +137,7 @@ public class GraphView extends AbstractView
             int width = graphImage.getWidth();
 
             Graphics g = graphImage.getGraphics();
-            g.copyArea(4, 0, width-4, height, -4, 0);
+            g.copyArea(4, 0, width-4, height, -4, 0);            
             g.setColor(Color.BLACK);
             g.drawLine(width-4, 0, width-4, height);
             g.drawLine(width-2, 0, width-2, height);
@@ -174,16 +149,15 @@ public class GraphView extends AbstractView
         /**
          * Dispay a new point of data.
          */
-        public void update(int step, Field field, FieldStats stats)
+        public void update(int step)
         {
             if (classes.size() >= 2) {
                 Iterator<Class> it = classes.iterator();
                 Class class1 = it.next();
                 Class class2 = it.next();
 
-                stats.reset();
-                int count1 = stats.getPopulationCount(field, class1);
-                int count2 = stats.getPopulationCount(field, class2);
+                int count1 = 3;
+                int count2 = 3;
 
                 Graphics g = graphImage.getGraphics();
 
@@ -219,7 +193,6 @@ public class GraphView extends AbstractView
                 repaintNow();
 
                 stepLabel.setText("" + step);
-                countLabel.setText(stats.getPopulationDetails(field));
             }
         }
 
@@ -232,7 +205,7 @@ public class GraphView extends AbstractView
             int height = graphImage.getHeight();
             int width = graphImage.getWidth();
 
-            BufferedImage tmpImage = new BufferedImage(width, (int)(height*SCALE_FACTOR),
+            BufferedImage tmpImage = new BufferedImage(width, (int)(height*SCALE_FACTOR), 
                                                        BufferedImage.TYPE_INT_RGB);
             Graphics2D gtmp = (Graphics2D) tmpImage.getGraphics();
 
@@ -278,7 +251,7 @@ public class GraphView extends AbstractView
          * Tell the layout manager how big we would like to be.
          * (This method gets called by layout managers for placing
          * the components.)
-         *
+         * 
          * @return The preferred dimension for this component.
          */
         public Dimension getPreferredSize()
@@ -295,10 +268,10 @@ public class GraphView extends AbstractView
         }
 
         /**
-         * This component needs to be redisplayed. Copy the internal image
-         * to screen. (This method gets called by the Swing screen painter
+         * This component needs to be redisplayed. Copy the internal image 
+         * to screen. (This method gets called by the Swing screen painter 
          * every time it want this component displayed.)
-         *
+         * 
          * @param g The graphics context that can be used to draw on this component.
          */
         public void paintComponent(Graphics g)

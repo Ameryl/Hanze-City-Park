@@ -34,6 +34,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private int tickPause = 100;
     private int typeCar = 0;
     private int typecarFloor = 0;
+    private int totalSpots = 0;
 
 
     int weekDayArrivals = 2000; // average number of arriving cars per hour DEFAULT: 50
@@ -60,6 +61,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         this.entranceCarQueue = new CarQueue();
         this.paymentCarQueue = new CarQueue();
         this.exitCarQueue = new CarQueue();
+        totalSpots = (numberOfFloors * numberOfRows) * numberOfPlaces;
 
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
     }
@@ -391,6 +393,10 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             return null;
         }
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
+    }
+
+    public int getTotalSpots() {
+        return totalSpots;
     }
 
     public int getWeekDayArrivals() {
