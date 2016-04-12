@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 import Logic.SimulatorModel;
 import javax.swing.*;
-
+import static javax.swing.JOptionPane.showMessageDialog;
 /**
  * This class is responsible for making the buttons functional
  */
@@ -15,6 +15,8 @@ public class SimulatorController extends AbstractController implements ActionLis
     private JButton onestep;
     private JButton onehunderdsteps;
     private JLabel title;
+    private boolean isRunning = false;
+
 
     /**
      * In the constructor we create several buttons with different function.
@@ -64,7 +66,13 @@ public class SimulatorController extends AbstractController implements ActionLis
      * Starts the sim.
      */
     public void start() {
-        sim.start();
+        if(!isRunning){
+            sim.start();
+            isRunning = true;
+        }
+        else {
+            showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
+        }
     }
 
     /**
@@ -72,6 +80,7 @@ public class SimulatorController extends AbstractController implements ActionLis
      */
     public void stop() {
         sim.run = false;
+        isRunning = false;
     }
 
     /**

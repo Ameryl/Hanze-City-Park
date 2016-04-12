@@ -43,7 +43,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
     int parkPassChance = 1; // chance x/10 of a car having a parkpass instead of a normal customer
-    int Reservationchance = 2; // chance of a car having a reservation instead of a normal customer
+    int Reservationchance = 1; // chance of a car having a reservation instead of a normal customer
 
 
     /**

@@ -29,13 +29,12 @@ public class infoView extends AbstractView {
         // REMINDER : DE LAYOUT AANPASSEN IS WERK VOOR NIEK
         // - Cyriel
         // DANKJEWEL CYRIEL
-        /*
+
         this.setLayout(null);
-        currentTime.setBounds(50, 50 , 50, 50);
-        revenueCount.setBounds(50, 50 , 50, 50);
-        currentCount.setBounds(50, 50 , 50, 50);
-        carCount.setBounds(50, 50 , 50, 50);
-        */
+        currentTime.setBounds(5, 0 , 200, 50);
+        revenueCount.setBounds(5, 20 , 200, 50);
+        currentCount.setBounds(5, 40 , 200, 50);
+        carCount.setBounds(5, 60 , 200, 50);
         add(currentTime);
         add(revenueCount);
         add(carCount);
