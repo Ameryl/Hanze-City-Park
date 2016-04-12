@@ -13,6 +13,7 @@ public class infoView extends AbstractView {
     private static JLabel carCount;
     private static JLabel currentCount;
     private static JLabel currentTime;
+    private static JLabel title;
 
     /**
      * The constructor for the infoview.
@@ -24,21 +25,19 @@ public class infoView extends AbstractView {
         carCount = new JLabel("Cars visited: " + sim.getAmountOfCars());
         currentCount = new JLabel("Amount of current cars: " + sim.getCurrentCars());
         currentTime = new JLabel("Time : " + sim.getHour() + ":" + sim.getMinute());
-
-
-        // REMINDER : DE LAYOUT AANPASSEN IS WERK VOOR NIEK
-        // - Cyriel
-        // DANKJEWEL CYRIEL
+        title = new JLabel("Information");
 
         this.setLayout(null);
         currentTime.setBounds(5, 0 , 200, 50);
         revenueCount.setBounds(5, 20 , 200, 50);
         currentCount.setBounds(5, 40 , 200, 50);
         carCount.setBounds(5, 60 , 200, 50);
+        title.setBounds(70, -40, 150, 100);
         add(currentTime);
         add(revenueCount);
         add(carCount);
         add(currentCount);
+        add(title);
     }
     @Override
     /**
