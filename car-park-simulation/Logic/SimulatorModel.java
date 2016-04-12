@@ -115,20 +115,20 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (random.nextInt(10) < parkPassChance) {
                 Car car = new ParkPassCar();
                 entranceCarQueue.addCar(car);
-                amountOfCars++;
+
 
             }
                 else if(random.nextInt(10) < Reservationchance) {
                     Car car = new ReservationCar();
                     entranceCarQueue.addCar(car);
-                amountOfCars++;
+
 
                 }
 
              else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
-                amountOfCars++;
+
 
             }
 
@@ -283,6 +283,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
             currentCars++;
+            amountOfCars++;
             return true;
         }
         return false;
@@ -333,7 +334,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
      * @return car object
      */
     public Car getFirstLeavingCar() {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+        for (int floor = typecarFloor; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
