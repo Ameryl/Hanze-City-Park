@@ -36,7 +36,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private int typecarFloor = 0;
 
 
-    int weekDayArrivals = 200; // average number of arriving cars per hour
+    int weekDayArrivals = 2000; // average number of arriving cars per hour
     int weekendArrivals = 300; // average number of arriving cars per hour
 
     int enterSpeed = 9; // number of cars that can enter per minute
@@ -236,6 +236,22 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return numberOfFloors;
     }
 
+
+    /**
+     * Determine the maximum floor on where a car can be placed
+     * @return The floor where a car can be placed.
+     */
+    public int getFreeFloor() {
+        int numFloor = 0;
+        if(typecarFloor == 0){
+            numFloor = 2;
+        } else {
+            numFloor = getNumberOfFloors();
+        }
+        return numFloor;
+
+    }
+
     /**
      * Give the amount of Rows
      * @return Amount of Rows
@@ -298,7 +314,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
      */
     public Location getFirstFreeLocation() {
 
-        for (int floor = typecarFloor; floor < getNumberOfFloors(); floor++) {
+        for (int floor = typecarFloor; floor < getFreeFloor(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
