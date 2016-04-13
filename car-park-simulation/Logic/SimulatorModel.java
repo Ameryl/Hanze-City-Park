@@ -85,17 +85,14 @@ public class SimulatorModel extends AbstractModel implements Runnable{
      */
     @Override
     public void run() {
-      run = true;
-        while(run){
-           tick();
-       }
-    }
-
-    public void runHundredSteps() {
-
-
+        run = true;
+        for(int i =0; i <= Controller.SimulatorController.amountSteps(); i++) {
+            tick();
+            System.out.println(i);
+        }
 
     }
+
 
     public void tick() {
         // Advance the time by one minute.

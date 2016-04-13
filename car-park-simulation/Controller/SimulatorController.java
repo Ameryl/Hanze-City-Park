@@ -17,6 +17,7 @@ public class SimulatorController extends AbstractController implements ActionLis
     private JButton onehunderdsteps;
     private JLabel title;
     private boolean isRunning = false;
+    private static int amountofSteps = 0;
 
 
     /**
@@ -63,6 +64,7 @@ public class SimulatorController extends AbstractController implements ActionLis
      * Starts the sim.
      */
     public void start() {
+        amountofSteps = 10000;
         if(!isRunning){
             sim.start();
             isRunning = true;
@@ -91,7 +93,13 @@ public class SimulatorController extends AbstractController implements ActionLis
      * Runs the simulator for steps.
      */
     public void oneHunderdSteps() {
+        amountofSteps = 100;
+        isRunning = true;
+        sim.start();
+    }
 
+    public static int amountSteps(){
+        return amountofSteps;
     }
 
 
