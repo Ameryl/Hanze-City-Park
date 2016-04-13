@@ -94,8 +94,13 @@ public class SimulatorController extends AbstractController implements ActionLis
      */
     public void oneHunderdSteps() {
         amountofSteps = 100;
-        isRunning = true;
-        sim.start();
+        if(!isRunning) {
+            isRunning = true;
+            sim.start();
+        }
+        else {
+            showMessageDialog(null, "EEN SIM IS ALFREDDIE ROENNING!");
+        }
     }
 
     public static int amountSteps(){

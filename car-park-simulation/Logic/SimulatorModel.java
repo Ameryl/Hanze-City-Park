@@ -86,7 +86,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     @Override
     public void run() {
         run = true;
-        for(int i =0; i <= Controller.SimulatorController.amountSteps(); i++) {
+        for(int i =0; i <= Controller.SimulatorController.amountSteps() & run == true; i++) {
             tick();
             System.out.println(i);
         }
