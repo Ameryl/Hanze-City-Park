@@ -1,8 +1,5 @@
 package Logic;
 
-
-import View.*;
-
 import java.util.Random;
 
 public class SimulatorModel extends AbstractModel implements Runnable{
@@ -18,6 +15,11 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
+
+    private int amountOfRegularCarsInSim = 0;
+    private int amountOfReservationCarsInSim = 0;
+    private int amountOfParkPassCarsInSim = 0;
+
 
     //Time intervals
 
@@ -64,6 +66,8 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         totalSpots = (numberOfFloors * numberOfRows) * numberOfPlaces;
 
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+
+        run=false;
     }
 
 
@@ -78,6 +82,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     /**
      * Run the Sim
      */
+    @Override
     public void run() {
       run = true;
         while(run){
@@ -154,7 +159,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car == null) {
                 break;
             }
-            notifyViews();
+            this.notifyViews();
             // Find a space for this car.
             Location freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
@@ -177,18 +182,18 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car instanceof AdHocCar) {
                 car.setIsPaying(true);
                 paymentCarQueue.addCar(car);
+                amountOfRegularCarsInSim--;
 
             } else if (car instanceof ParkPassCar) {
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
-
+                amountOfParkPassCarsInSim--;
             }
             else if(car instanceof ReservationCar) {
                 removeCarAt(car.getLocation()); // Since no payment is required, directly remove the car.
                 exitCarQueue.addCar(car);
-
+                amountOfReservationCarsInSim--;
             }
-
         }
 
 
@@ -214,13 +219,12 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             if (car == null) {
                 break;
             }
-            notifyViews();
             // Bye!
 
         }
 
         // Update the car park view.
-         notifyViews();
+         this.notifyViews();
 
         // Pause.
         try {
@@ -251,7 +255,6 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             numFloor = getNumberOfFloors();
         }
         return numFloor;
-
     }
 
     /**
@@ -285,6 +288,15 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
             currentCars++;
+            if (car instanceof ReservationCar){
+                amountOfReservationCarsInSim++;
+            }
+            else if (car instanceof ParkPassCar){
+                amountOfParkPassCarsInSim++;
+            }
+            else{
+                amountOfRegularCarsInSim++;
+            }
             amountOfCars++;
             return true;
         }
@@ -297,6 +309,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
      * @return Returns the car
      */
     public Car removeCarAt(Location location) {
+
         if (!locationIsValid(location)) {
             return null;
         }
@@ -425,6 +438,18 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     public int getTypeCar() {
         return typeCar;
+    }
+
+    public int getAmountOfRegularCarsInSim() {
+        return amountOfRegularCarsInSim;
+    }
+
+    public int getAmountOfReservationCarsInSim() {
+        return amountOfReservationCarsInSim;
+    }
+
+    public int getAmountOfParkPassCarsInSim() {
+        return amountOfParkPassCarsInSim;
     }
 
     public int getPaymentSpeed() {

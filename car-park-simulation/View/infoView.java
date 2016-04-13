@@ -45,7 +45,6 @@ public class infoView extends AbstractView {
      * which means it sets the text on the lables.
      */
     public void updateView() {
-        SimulatorModel sim = (SimulatorModel) super.sim;
         revenueCount.setText("Revenue : "+ sim.getRevenue() + "€");
         carCount.setText("Cars visited: " + sim.getAmountOfCars());
         currentCount.setText("Amount of current cars: " + sim.getCurrentCars() + " / " + sim.getTotalSpots());

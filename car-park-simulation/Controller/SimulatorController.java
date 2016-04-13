@@ -3,13 +3,14 @@ package Controller;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
 
-import Logic.SimulatorModel;
+import Logic.*;
 import javax.swing.*;
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  * This class is responsible for making the buttons functional
  */
 public class SimulatorController extends AbstractController implements ActionListener {
+    private static final long serialVersionUID = -8776795932665582315L;
     private JButton start;
     private JButton stop;
     private JButton onestep;
@@ -40,15 +41,12 @@ public class SimulatorController extends AbstractController implements ActionLis
         onehunderdsteps = new JButton("100 Steps");
         onehunderdsteps.addActionListener(this);
 
+        this.setLayout(null);
         add(title);
         add(start);
         add(stop);
         add(onestep);
         add(onehunderdsteps);
-
-
-
-        this.setLayout(null);
 
         title.setBounds(50, -40, 150, 100);
 

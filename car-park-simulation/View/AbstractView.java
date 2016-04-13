@@ -4,7 +4,7 @@ import Logic.*;
 import javax.swing.*;
 
 public abstract class AbstractView extends JPanel {
-	private static final long serialVersionUID = -2767764579227738552L;
+
 	protected SimulatorModel sim;
 
 	public AbstractView(SimulatorModel model) {

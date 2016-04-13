@@ -1,14 +1,12 @@
 package Main; /**
  * The simulation of a carpark system. It simulates the possibilities of how
  * a car is parked.
- *
  */
 
 
 import Controller.*;
 import View.*;
 import Logic.*;
-import View.PieView;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -19,12 +17,12 @@ public class Simulator {
     /**
      * Constructor for the simulator
      */
-    private JFrame frame;
-    private AbstractView SimulatorView;
+    private JFrame screen;
+    private AbstractView  simulatorview;
     private SimulatorModel simModel;
-    private AbstractController SimulatorController;
-    private AbstractView infoView;
-    private AbstractView PieView;
+    private AbstractController simulatorcontroller;
+    private AbstractView infoview;
+    private AbstractView pieview;
 
     public Simulator() {
         Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -32,34 +30,32 @@ public class Simulator {
 
         simModel = new SimulatorModel(3, 6, 30);
 
-        SimulatorController = new SimulatorController(simModel);
-        SimulatorView = new SimulatorView(simModel);
-        infoView = new infoView(simModel);
-        PieView = new PieView(simModel);
+        simulatorcontroller = new SimulatorController(simModel);
+        simulatorview = new SimulatorView(simModel);
+        infoview = new infoView(simModel);
+        pieview = new PieView(simModel);
 
-        frame = new JFrame("Car Park Simulation");
-        frame.setSize(1300, 500);
-        frame.setResizable(true);
-        frame.setLayout(null);
+        screen = new JFrame("Car Park Simulation");
+        screen.setSize(1500, 500);
+        screen.setResizable(true);
+        screen.setLayout(null);
 
+        screen.getContentPane().add(simulatorview);
+        screen.getContentPane().add(infoview);
+        screen.getContentPane().add(pieview);
+        screen.getContentPane().add(simulatorcontroller);
 
-        frame.getContentPane().add(SimulatorView);
-        frame.getContentPane().add(SimulatorController);
-        frame.getContentPane().add(infoView);
-        frame.getContentPane().add(PieView);
+        pieview.setBorder(redline);
+        infoview.setBorder(redline);
+        simulatorview.setBorder(blackline);
+        simulatorcontroller.setBorder(blackline);
 
-        PieView.setBorder(redline);
-        infoView.setBorder(redline);
-        SimulatorView.setBorder(blackline);
-        SimulatorController.setBorder(blackline);
+        simulatorview.setBounds(5, 5, 800, 400);
+        infoview.setBounds(850, 50, 200, 100);
+        pieview.setBounds(1075, 50, 225, 300);
+        simulatorcontroller.setBounds(850, 200, 200, 100);
 
-        SimulatorView.setBounds(10,10,800,400);
-        infoView.setBounds(850,50,200,100);
-        PieView.setBounds(1075,50,200,200);
-        SimulatorController.setBounds(850,200,200,100);
-
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        frame.setVisible(true);
+        screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        screen.setVisible(true);
     }
 }

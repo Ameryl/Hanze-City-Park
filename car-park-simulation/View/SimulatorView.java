@@ -9,6 +9,7 @@ import Logic.*;
  * What is does is that it makes the whole gui appear.
  */
 public class SimulatorView extends AbstractView {
+    private static final long serialVersionUID = -7891669840482084995L;
 
     private Image carParkImage;
     private Dimension size;
@@ -19,7 +20,6 @@ public class SimulatorView extends AbstractView {
      */
     public SimulatorView(SimulatorModel sim) {
         super(sim);
-        size = new Dimension();
     }
 
     /**
@@ -27,9 +27,9 @@ public class SimulatorView extends AbstractView {
      * It also sets the color of the different cars.
      * @param g
      */
+
     public void paintComponent(Graphics g) {
         g.drawImage(carParkImage, 0, 0, null);
-        SimulatorModel sim = getModel();
 
         size = getSize();
         carParkImage = createImage(size.width, size.height);
@@ -69,13 +69,11 @@ public class SimulatorView extends AbstractView {
      */
     private void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
-        graphics.fillRect(
-                location.getFloor() * 260 + (1 + (int) Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
+        graphics.fillRect(location.getFloor() * 260 + (1 + (int) Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
                 60 + location.getPlace() * 10,
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
-
-    }
+}
 
 
