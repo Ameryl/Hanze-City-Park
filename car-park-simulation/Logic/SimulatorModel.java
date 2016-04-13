@@ -30,6 +30,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
     //Informations stats
 
     private int revenue = 0;
+    private int expectedRevenue = 0;
     private int amountOfCars = 0;
     private int currentCars =0;
 
@@ -90,8 +91,15 @@ public class SimulatorModel extends AbstractModel implements Runnable{
        }
     }
 
+    public void runHundredSteps() {
+
+
+
+    }
+
     public void tick() {
         // Advance the time by one minute.
+
         minute++;
         while (minute > 59) {
             minute -= 60;
@@ -135,6 +143,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
              else {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
+                //expectedRevenue +=5;
 
 
             }
@@ -164,6 +173,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             Location freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
                 setCarAt(freeLocation, car);
+                expectedRevenue += 5;
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
@@ -209,6 +219,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             removeCarAt(car.getLocation());
 
             exitCarQueue.addCar(car);
+
 
         }
 
@@ -296,6 +307,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
             }
             else{
                 amountOfRegularCarsInSim++;
+                expectedRevenue -= 5;
             }
             amountOfCars++;
             return true;
@@ -320,6 +332,7 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
         car.setLocation(null);
         currentCars--;
+
 
         return car;
     }
@@ -426,6 +439,10 @@ public class SimulatorModel extends AbstractModel implements Runnable{
 
     public int getRevenue() {
         return revenue;
+    }
+
+    public int getExpectedRevenue() {
+        return expectedRevenue;
     }
 
     public int getAmountOfCars() {
