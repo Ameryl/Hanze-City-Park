@@ -30,6 +30,7 @@ public class PieView extends AbstractView {
         g.setColor(Color.BLUE);
         g.fillRect(10, 275, 20 - 1, 10 - 1);
 
+        //Set size of pieview
         Rectangle abs = new Rectangle();
         abs.setSize(225, 200);
 

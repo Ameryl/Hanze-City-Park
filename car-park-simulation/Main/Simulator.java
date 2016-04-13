@@ -36,7 +36,7 @@ public class Simulator {
         pieview = new PieView(simModel);
 
         screen = new JFrame("Car Park Simulation");
-        screen.setSize(1500, 500);
+        screen.setSize(1350, 475);
         screen.setResizable(true);
         screen.setLayout(null);
 
@@ -51,9 +51,9 @@ public class Simulator {
         simulatorcontroller.setBorder(blackline);
 
         simulatorview.setBounds(5, 5, 800, 400);
-        infoview.setBounds(850, 50, 200, 100);
-        pieview.setBounds(1075, 50, 225, 300);
-        simulatorcontroller.setBounds(850, 200, 200, 100);
+        infoview.setBounds(825, 5, 200, 100);
+        pieview.setBounds(1075, 5, 225, 300);
+        simulatorcontroller.setBounds(825, 150, 200, 100);
 
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         screen.setVisible(true);
