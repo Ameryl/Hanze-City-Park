@@ -55,7 +55,7 @@ public class Simulator {
         graphview.setBorder(redline);
 
         simulatorview.setBounds(5, 5, 800, 400);
-        infoview.setBounds(825, 5, 200, 100);
+        infoview.setBounds(825, 5, 200, 130);
         pieview.setBounds(1075, 5, 225, 300);
         simulatorcontroller.setBounds(825, 150, 200, 100);
         graphview.setBounds(1350, 5, 250, 300);
