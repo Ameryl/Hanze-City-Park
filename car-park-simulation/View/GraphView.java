@@ -1,5 +1,8 @@
 package View;
 
+import Logic.SimulatorModel;
+import Main.Simulator;
+
 import java.awt.*;
 import java.awt.image.*;
 import javax.swing.*;
@@ -13,7 +16,7 @@ import java.util.*;
  * @author Ronan Vonk
  * @version 2016.04.13
  */
-public class GraphView extends JPanel
+public class GraphView extends AbstractView
 {
     private static final Color LIGHT_GRAY = new Color(0, 0, 0, 40);
 
@@ -36,13 +39,15 @@ public class GraphView extends JPanel
      * @param startMax The initial maximum value for the y axis.
      * @param width The second class to be plotted.
      */
-    public GraphView(int width, int height, int startMax)
+    public GraphView(SimulatorModel sim, int width, int height, int startMax)
     {
+        super(sim);
         classes = new HashSet<Class>();
         colors = new HashMap<Class, Color>();
 
         if (frame == null) {
             frame = makePanel(width, height, startMax);
+            frame.repaint();
         }
         else {
             graph.newRun();
@@ -53,7 +58,6 @@ public class GraphView extends JPanel
 
     /**
      * Define a color to be used for a given class of animal.
-     * @param animalClass The animal's Class object.
      * @param color The color to be used for the given class.
      */
     public void setColor(Color color)
@@ -276,6 +280,10 @@ public class GraphView extends JPanel
             if(graphImage != null) {
                 g.drawImage(graphImage, 0, 0, null);
             }
+        }
+
+        public void updateView() {
+            update(sim.getCurrentCars());
         }
     }
 }

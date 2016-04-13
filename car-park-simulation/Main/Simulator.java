@@ -35,7 +35,7 @@ public class Simulator {
         simulatorview = new SimulatorView(simModel);
         infoview = new infoView(simModel);
         pieview = new PieView(simModel);
-        graphview = new GraphView(200 , 200, 500);
+        graphview = new GraphView(simModel, 200 , 200, 500);
 
         screen = new JFrame("Car Park Simulation");
         screen.setSize(1700, 475);
