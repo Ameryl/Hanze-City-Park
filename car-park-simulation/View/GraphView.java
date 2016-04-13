@@ -10,14 +10,14 @@ import java.util.*;
  * over time. In its current version, it can only plot exactly two different classes of
  * animals. If further animals are introduced, they will not currently be displayed.
  *
- * @author Michael Kölling and David J. Barnes
- * @version 2011.07.31
+ * @author Ronan Vonk
+ * @version 2016.04.13
  */
-public class GraphView
+public class GraphView extends JPanel
 {
     private static final Color LIGHT_GRAY = new Color(0, 0, 0, 40);
 
-    private static JFrame frame;
+    private static JPanel frame;
     private static GraphPanel graph;
     private static JLabel stepLabel;
     private static JLabel countLabel;
@@ -42,7 +42,7 @@ public class GraphView
         colors = new HashMap<Class, Color>();
 
         if (frame == null) {
-            frame = makeFrame(width, height, startMax);
+            frame = makePanel(width, height, startMax);
         }
         else {
             graph.newRun();
@@ -56,9 +56,9 @@ public class GraphView
      * @param animalClass The animal's Class object.
      * @param color The color to be used for the given class.
      */
-    public void setColor(Class animalClass, Color color)
+    public void setColor(Color color)
     {
-        colors.put(animalClass, color);
+        //colors.put(animalClass, color);
         classes = colors.keySet();
     }
 
@@ -74,15 +74,13 @@ public class GraphView
     /**
      * Prepare the frame for the graph display.
      */
-    private JFrame makeFrame(int width, int height, int startMax)
+    private JPanel makePanel(int width, int height, int startMax)
     {
-        JFrame frame = new JFrame("Graph View");
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
-        Container contentPane = frame.getContentPane();
+        JPanel frame = new JPanel();
+        //frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
         graph = new GraphPanel(width, height, startMax);
-        contentPane.add(graph, BorderLayout.CENTER);
+        add(graph, BorderLayout.CENTER);
 
         JPanel bottom = new JPanel();
         bottom.add(new JLabel("Step:"));
@@ -90,12 +88,11 @@ public class GraphView
         bottom.add(stepLabel);
         countLabel = new JLabel(" ");
         bottom.add(countLabel);
-        contentPane.add(bottom, BorderLayout.SOUTH);
+        add(bottom, BorderLayout.SOUTH);
 
-        frame.pack();
-        frame.setLocation(20, 600);
+        setLocation(20, 600);
 
-        frame.setVisible(true);
+        setVisible(true);
 
         return frame;
     }
