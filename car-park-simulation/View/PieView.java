@@ -29,7 +29,7 @@ public class PieView extends AbstractView {
         add(reservationCarLabel);
         add(regularCarLabel);
 
-        regularCarLabel.setText("Amount of Regular Cars : " + sim.getAmountOfRegularCarsInSim());
+        regularCarLabel.setText("Amount of regular Cars : " + sim.getAmountOfRegularCarsInSim());
         parkPassCarLabel.setText("Amount of parkpass Cars : " + sim.getAmountOfParkPassCarsInSim());
         reservationCarLabel.setText("Amount of reservation Cars : " + sim.getAmountOfReservationCarsInSim());
 
