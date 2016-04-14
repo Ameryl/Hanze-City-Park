@@ -24,6 +24,7 @@ public class Simulator {
     private AbstractView infoview;
     private AbstractView pieview;
     private GraphView graphview;
+    private QueueView queueview;
 
     public Simulator() {
         Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -36,6 +37,7 @@ public class Simulator {
         infoview = new infoView(simModel);
         pieview = new PieView(simModel);
         graphview = new GraphView(simModel, 200 , 200, 500);
+        queueview = new QueueView(simModel);
 
         screen = new JFrame("Car Park Simulation");
         screen.setSize(1700, 475);
@@ -47,13 +49,16 @@ public class Simulator {
         screen.getContentPane().add(pieview);
         screen.getContentPane().add(simulatorcontroller);
         screen.getContentPane().add(graphview);
+        screen.getContentPane().add(queueview);
 
+        queueview.setBorder(redline);
         pieview.setBorder(redline);
         infoview.setBorder(redline);
         simulatorview.setBorder(blackline);
         simulatorcontroller.setBorder(blackline);
         graphview.setBorder(redline);
 
+        queueview.setBounds(825, 275, 200, 130);
         simulatorview.setBounds(5, 5, 800, 400);
         infoview.setBounds(825, 5, 200, 130);
         pieview.setBounds(1075, 5, 225, 300);
