@@ -1,16 +1,37 @@
 package View;
 import Logic.SimulatorModel;
 
+
+import javax.swing.*;
 import java.awt.*;
 
 public class PieView extends AbstractView {
+    private static JLabel regularCarLabel;
+    private static JLabel parkPassCarLabel;
+    private static JLabel reservationCarLabel;
 
 
     public PieView(SimulatorModel sim) {
         super(sim);
+        regularCarLabel = new JLabel("Amount of Regular Cars : " + sim.getAmountOfRegularCarsInSim());
+        parkPassCarLabel = new JLabel("Amount of parkpass Cars : " + sim.getAmountOfParkPassCarsInSim());
+        reservationCarLabel = new JLabel("Amount of reservation Cars : " + sim.getAmountOfReservationCarsInSim());
+        setLayout(null);
     }
 
     public void paintComponent(Graphics g){
+
+        regularCarLabel.setBounds(35, 204, 200, 50);
+        parkPassCarLabel.setBounds(35, 229, 200, 50);
+        reservationCarLabel.setBounds(35, 254, 200, 50);
+
+        add(parkPassCarLabel);
+        add(reservationCarLabel);
+        add(regularCarLabel);
+
+        regularCarLabel.setText("Amount of Regular Cars : " + sim.getAmountOfRegularCarsInSim());
+        parkPassCarLabel.setText("Amount of parkpass Cars : " + sim.getAmountOfParkPassCarsInSim());
+        reservationCarLabel.setText("Amount of reservation Cars : " + sim.getAmountOfReservationCarsInSim());
 
         int amountofregcars = sim.getAmountOfRegularCarsInSim();
         int amountofparkpasscars = sim.getAmountOfParkPassCarsInSim();
