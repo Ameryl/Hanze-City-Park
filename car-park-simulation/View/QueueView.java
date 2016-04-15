@@ -21,14 +21,12 @@ public class QueueView extends AbstractView {
         super(sim);
         queueCountIn = new JLabel("Enter queue : "+ sim.getEnterQueueCount());
         queueCountOut = new JLabel("Exit queue : "+ sim.getExitQueueCount());
-        title = new JLabel("Information");
-
-
+        title = new JLabel("Que Information");
 
         this.setLayout(null);
         queueCountIn.setBounds(5, 0 , 200, 50);
         queueCountOut.setBounds(5, 20 , 200, 50);
-        title.setBounds(70, -60, 150, 100);
+        title.setBounds(60, -40, 150, 100);
 
         add(queueCountIn);
         add(queueCountOut);

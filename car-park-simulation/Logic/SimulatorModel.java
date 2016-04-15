@@ -506,6 +506,37 @@ public class SimulatorModel extends AbstractModel implements Runnable{
         return day;
     }
 
+    public String getCurrentDay(){
+        int day = getDay();
+        String dayString;
+        switch (day) {
+            case 0:
+                dayString = "Monday";
+                break;
+            case 1:
+                dayString = "Tuesday";
+                break;
+            case 2:
+                dayString = "Wednesday";
+                break;
+            case 3:
+                dayString = "Thursday";
+                break;
+            case 4:
+                dayString = "Friday";
+                break;
+            case 5:
+                dayString = "Saturday";
+                break;
+            case 6:
+                dayString = "Sunday";
+                break;
+            default:
+                dayString = "";
+        }
+        return dayString;
+    }
+
     public int getHour() {
         return hour;
     }
