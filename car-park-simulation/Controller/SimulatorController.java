@@ -54,7 +54,6 @@ public class SimulatorController extends AbstractController implements ActionLis
         stop.setBounds(100, 20, 95, 30);
         start.setBounds(5, 20, 95, 30);
 
-
         onestep.setBounds(5, 65, 95, 30);
         onehunderdsteps.setBounds(100, 65, 95, 30);
         setVisible(true);

@@ -36,7 +36,7 @@ public class infoView extends AbstractView {
         expectedRevenue.setBounds(5, 40, 200, 50);
         currentCount.setBounds(5, 60 , 200, 50);
         carCount.setBounds(5, 80 , 200, 50);
-        title.setBounds(70, -60, 150, 100);
+        title.setBounds(70, -40, 150, 100);
         add(currentTime);
         add(revenueCount);
         add(carCount);

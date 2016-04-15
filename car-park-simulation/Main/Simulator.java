@@ -23,7 +23,7 @@ public class Simulator {
     private AbstractController simulatorcontroller;
     private AbstractView infoview;
     private AbstractView pieview;
-    private GraphView graphview;
+   // private GraphView graphview;
     private QueueView queueview;
 
     public Simulator() {
@@ -36,11 +36,11 @@ public class Simulator {
         simulatorview = new SimulatorView(simModel);
         infoview = new infoView(simModel);
         pieview = new PieView(simModel);
-        graphview = new GraphView(simModel, 200 , 200, 500);
+      //  graphview = new GraphView(simModel, 200 , 200, 500);
         queueview = new QueueView(simModel);
 
         screen = new JFrame("Car Park Simulation");
-        screen.setSize(1700, 475);
+        screen.setSize(1350, 475);
         screen.setResizable(true);
         screen.setLayout(null);
 
@@ -48,7 +48,7 @@ public class Simulator {
         screen.getContentPane().add(infoview);
         screen.getContentPane().add(pieview);
         screen.getContentPane().add(simulatorcontroller);
-        screen.getContentPane().add(graphview);
+      //  screen.getContentPane().add(graphview);
         screen.getContentPane().add(queueview);
 
         queueview.setBorder(redline);
@@ -56,14 +56,14 @@ public class Simulator {
         infoview.setBorder(redline);
         simulatorview.setBorder(blackline);
         simulatorcontroller.setBorder(blackline);
-        graphview.setBorder(redline);
+     //   graphview.setBorder(redline);
 
-        queueview.setBounds(825, 275, 200, 130);
+        queueview.setBounds(825, 275, 200, 70);
         simulatorview.setBounds(5, 5, 800, 400);
         infoview.setBounds(825, 5, 200, 130);
         pieview.setBounds(1075, 5, 225, 300);
         simulatorcontroller.setBounds(825, 150, 200, 100);
-        graphview.setBounds(1350, 5, 250, 300);
+    //    graphview.setBounds(1350, 5, 250, 300);
 
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         screen.setVisible(true);
